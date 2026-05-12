@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, DM_Sans, Inter, PT_Serif } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Inter, Playfair_Display } from "next/font/google";
 import { MerrakiiLanding } from "@/components/home/MerrakiiLanding";
 
 const dmSans = DM_Sans({
@@ -22,11 +22,12 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-const ptSerif = PT_Serif({
+/** Landing headings — matches design mockup (Playfair-class serif) */
+const ptSerif = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-mk-pt-serif",
   display: "swap",
-  weight: ["400", "700"],
+  weight: ["600", "700"],
 });
 
 export const metadata = {

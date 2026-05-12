@@ -15,29 +15,30 @@ const FIGMA_NAV: [string, string][] = [
   ["Contact Us", "/#contact"],
 ];
 
-/** Reference UI: each destination pill pairs with an exam below it */
+/** Reference UI: flags USA → NZ, exams JEE → UPSC (design row order) */
 const HERO_DEST_EXAMS = [
-  { flag: "🇦🇺", label: "Australia", exam: "CUET" },
-  { flag: "🇦🇪", label: "UAE", exam: "UPSC" },
-  { flag: "🇪🇺", label: "Europe", exam: "JEE" },
-  { flag: "🇳🇿", label: "New Zealand", exam: "NEET" },
-  { flag: "🇺🇸", label: "USA", exam: "CLAT" },
-  { flag: "🇨🇦", label: "Canada", exam: "SAT" },
+  { flag: "🇺🇸", label: "USA", exam: "JEE" },
+  { flag: "🇨🇦", label: "Canada", exam: "NEET" },
+  { flag: "🇦🇺", label: "Australia", exam: "CLAT" },
+  { flag: "🇦🇪", label: "UAE", exam: "SAT" },
+  { flag: "🇪🇺", label: "European Union", exam: "CUET" },
+  { flag: "🇳🇿", label: "New Zealand", exam: "UPSC" },
 ] as const;
 
 /** Scrolling row (mobile / secondary) */
-const COURSE_TICKER = ["UPSC", "CUET", "SAT", "CLAT", "NEET", "JEE"] as const;
+const COURSE_TICKER = ["JEE", "NEET", "CLAT", "SAT", "CUET", "UPSC"] as const;
 const COUNTRY_TICKER = [
-  "Australia",
-  "UAE",
-  "Europe",
   "USA",
   "Canada",
-  "New Zealand",
   "Australia",
   "UAE",
-  "Europe",
+  "European Union",
+  "New Zealand",
   "USA",
+  "Canada",
+  "Australia",
+  "UAE",
+  "European Union",
 ] as const;
 
 const SERVICE_CARDS = [
@@ -67,19 +68,18 @@ function SearchIcon({ className }: { className?: string }) {
 
 function HeadphonesIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden>
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
-        fill="#C1272D"
-        d="M6.67 11.67a3.33 3.33 0 013.33 3.33v13.33a3.33 3.33 0 01-3.33 3.33h-.83a3.33 3.33 0 01-3.34-3.33V15a3.33 3.33 0 013.34-3.33z"
+        d="M4 14v5a2 2 0 002 2h1v-9H6a2 2 0 00-2 2zm16 0v5a2 2 0 01-2 2h-1v-9h1a2 2 0 012 2z"
+        stroke="#101828"
+        strokeWidth={2}
+        strokeLinejoin="round"
       />
       <path
-        fill="#1a1a1a"
-        d="M20 11.67h5a5 5 0 015 5v8.33a5 5 0 01-5 5h-.83a3.33 3.33 0 01-3.34-3.33V15a3.33 3.33 0 013.34-3.33z"
-      />
-      <path
-        stroke="#525152"
-        strokeWidth={1.2}
-        d="M3.33 13.33v11.67a2.5 2.5 0 002.5 2.5"
+        d="M4 14v-3a8 8 0 0116 0v3"
+        stroke="#101828"
+        strokeWidth={2}
+        strokeLinecap="round"
       />
     </svg>
   );
@@ -184,7 +184,7 @@ export function MerrakiiLanding() {
     <div ref={rootRef} className="mk-home min-h-screen max-w-full min-w-0 overflow-x-hidden bg-[#FFFDF5]">
       <a
         href="#mk-main"
-        className="mk-home-skip focus:outline-none fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-[#C1272D] px-4 py-2 text-sm font-semibold text-white opacity-0 transition focus:translate-y-0 focus:opacity-100"
+        className="mk-home-skip focus:outline-none fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-[#B92E2E] px-4 py-2 text-sm font-semibold text-white opacity-0 transition focus:translate-y-0 focus:opacity-100"
       >
         Skip to content
       </a>
@@ -192,16 +192,27 @@ export function MerrakiiLanding() {
       <div id="top" className="relative overflow-hidden">
         <div className="relative min-h-[min(100vh,960px)] pb-12 pt-2 md:pb-20">
           <div
+            className="pointer-events-none absolute left-[4%] top-[14%] hidden h-[min(52vw,340px)] w-[min(52vw,340px)] opacity-[0.35] sm:block lg:left-[6%]"
+            aria-hidden
+          >
+            <div className="absolute inset-[4%] rounded-full border border-[#B92E2E]/18" />
+            <div className="absolute inset-[14%] rounded-full border border-[#B92E2E]/12" />
+            <div className="absolute inset-[24%] rounded-full border border-[#1D3557]/08" />
+            <span className="absolute left-[8%] top-[28%] h-2 w-2 rounded-full bg-[#B92E2E]" />
+            <span className="absolute right-[22%] top-[14%] h-1.5 w-1.5 rounded-full bg-[#B92E2E]" />
+          </div>
+
+          <div
             className="pointer-events-none absolute left-[42%] top-12 h-[min(92vw,620px)] w-[min(92vw,620px)] -translate-x-1/2 opacity-40 md:left-[56%] md:top-20 lg:left-[52%] lg:opacity-[0.38]"
             aria-hidden
           >
-            <div className="absolute inset-[6%] rounded-full border border-[#C1272D]/22" />
-            <div className="absolute inset-[16%] rounded-full border border-[#C1272D]/16" />
+            <div className="absolute inset-[6%] rounded-full border border-[#B92E2E]/22" />
+            <div className="absolute inset-[16%] rounded-full border border-[#B92E2E]/16" />
             <div className="absolute inset-[26%] rounded-full border border-[#1D3557]/10" />
-            <span className="absolute left-[10%] top-[18%] h-2 w-2 rounded-full bg-[#C1272D]" />
-            <span className="absolute right-[16%] top-[28%] h-1.5 w-1.5 rounded-full bg-[#C1272D]" />
-            <span className="absolute bottom-[22%] left-[20%] h-1.5 w-1.5 rounded-full bg-[#C1272D]" />
-            <span className="absolute bottom-[16%] right-[12%] h-2 w-2 rounded-full bg-[#C1272D]" />
+            <span className="absolute left-[10%] top-[18%] h-2 w-2 rounded-full bg-[#B92E2E]" />
+            <span className="absolute right-[16%] top-[28%] h-1.5 w-1.5 rounded-full bg-[#B92E2E]" />
+            <span className="absolute bottom-[22%] left-[20%] h-1.5 w-1.5 rounded-full bg-[#B92E2E]" />
+            <span className="absolute bottom-[16%] right-[12%] h-2 w-2 rounded-full bg-[#B92E2E]" />
           </div>
 
           <header className="relative z-20 mx-auto max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
@@ -227,7 +238,7 @@ export function MerrakiiLanding() {
 
               <a
                 href="tel:+919899088710"
-                className="hidden items-center gap-3 rounded-2xl border-[3px] border-[#C1272D] bg-white px-4 py-3 shadow-[0_8px_24px_rgba(29,53,87,0.08)] no-underline sm:flex"
+                className="hidden items-center gap-3 rounded-2xl border-[3px] border-[#B92E2E] bg-white px-4 py-3 shadow-[0_8px_24px_rgba(29,53,87,0.08)] no-underline sm:flex"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FFFDF5]">
                   <HeadphonesIcon className="h-7 w-7" />
@@ -244,7 +255,7 @@ export function MerrakiiLanding() {
             </div>
 
             <nav
-              className="mx-auto mt-5 hidden w-full max-w-5xl rounded-full bg-[#C1272D] px-2 py-2 shadow-[0_8px_24px_rgba(193,39,45,0.28)] sm:block sm:py-2.5"
+              className="mx-auto mt-5 hidden w-full max-w-5xl rounded-full bg-[#B92E2E] px-2 py-2 shadow-[0_8px_24px_rgba(185,46,46,0.28)] sm:block sm:py-2.5"
               aria-label="Primary"
             >
               <div className="flex flex-wrap items-center justify-center gap-0.5 sm:gap-1">
@@ -255,10 +266,8 @@ export function MerrakiiLanding() {
                       key={label}
                       href={href}
                       className={cn(
-                        "inline-flex min-w-0 justify-center rounded-full px-3 py-2 text-sm text-white no-underline transition hover:bg-white/15 sm:min-w-[6.25rem] sm:px-4",
-                        isHome
-                          ? "font-[family-name:var(--font-mk-pt-serif),serif] font-bold"
-                          : "font-[family-name:var(--font-mk-inter),sans-serif] font-medium",
+                        "inline-flex min-w-0 justify-center rounded-full px-3 py-2 font-[family-name:var(--font-mk-inter),sans-serif] text-sm text-white no-underline transition hover:bg-white/15 sm:min-w-[6.25rem] sm:px-4",
+                        isHome ? "font-bold" : "font-medium",
                       )}
                     >
                       {label}
@@ -270,7 +279,7 @@ export function MerrakiiLanding() {
 
             <a
               href="tel:+919899088710"
-              className="mt-4 flex items-center gap-3 rounded-2xl border-[3px] border-[#C1272D] bg-white px-3 py-2.5 no-underline shadow-sm sm:hidden"
+              className="mt-4 flex items-center gap-3 rounded-2xl border-[3px] border-[#B92E2E] bg-white px-3 py-2.5 no-underline shadow-sm sm:hidden"
             >
               <HeadphonesIcon className="h-9 w-9 shrink-0" />
               <span className="text-left">
@@ -283,17 +292,18 @@ export function MerrakiiLanding() {
           <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-4 pb-6 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:items-center lg:gap-14 lg:px-8 lg:pt-6">
             <div className="max-w-xl lg:max-w-none">
               <h1
-                className="mk-home-reveal text-[clamp(2rem,4.2vw,3.55rem)] font-bold leading-[1.12] tracking-[-0.01em] text-[#101828]"
+                className="mk-home-reveal text-[clamp(2rem,4.2vw,3.55rem)] leading-[1.12] tracking-[-0.01em]"
                 style={{ fontFamily: "var(--font-mk-pt-serif), ui-serif, Georgia, serif" }}
               >
-                <span>Your </span>
-                <span className="text-[#C1272D]">Gateway </span>
-                <span>To </span>
-                <span className="text-[#1D3557]">World-Class Education</span>
+                <span className="font-semibold text-[#1D3557]">Your </span>
+                <span className="font-bold text-[#B92E2E]">Gateway </span>
+                <span className="font-semibold text-[#1D3557]">To </span>
+                <span className="font-bold text-[#1D3557]">World-Class </span>
+                <span className="font-semibold text-[#1D3557]">Education</span>
               </h1>
 
               <form onSubmit={onSearchSubmit} className="mk-home-reveal mt-8 max-w-[34rem]">
-                <div className="flex items-stretch overflow-hidden rounded-[1.25rem] border-2 border-[#C1272D] bg-white shadow-[inset_0_2px_6px_rgba(29,53,87,0.06),0_12px_32px_rgba(29,53,87,0.08)]">
+                <div className="flex items-stretch overflow-hidden rounded-[1.25rem] border-[3px] border-[#B92E2E] bg-white shadow-[inset_0_2px_6px_rgba(29,53,87,0.06),0_12px_32px_rgba(29,53,87,0.08)]">
                   <span className="flex shrink-0 items-center pl-4 text-[#1D3557]/45">
                     <SearchIcon className="h-6 w-6" />
                   </span>
@@ -310,7 +320,7 @@ export function MerrakiiLanding() {
               <div className="mk-home-reveal mt-8 flex flex-wrap gap-4">
                 <a
                   href={STUDY_ABROAD_SITE}
-                  className="relative inline-flex min-h-[52px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-[#c1272d] via-[#e63b40] to-[#ff6b6f] px-9 font-[family-name:var(--font-mk-inter),sans-serif] text-base font-semibold text-white no-underline shadow-[0_6px_0_#8f1f24,0_14px_32px_rgba(193,39,45,0.4)] ring-1 ring-white/30 transition hover:brightness-105"
+                  className="relative inline-flex min-h-[52px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-[#b92e2e] via-[#e63b40] to-[#ff6b6f] px-9 font-[family-name:var(--font-mk-inter),sans-serif] text-base font-semibold text-white no-underline shadow-[0_6px_0_#6e2424,0_14px_32px_rgba(185,46,46,0.4)] ring-1 ring-white/30 transition hover:brightness-105"
                 >
                   <span className="relative z-[1]">Study Abroad</span>
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-white/15" aria-hidden />
@@ -340,8 +350,8 @@ export function MerrakiiLanding() {
                   />
                 </div>
 
-                <div className="absolute -left-1 top-[10%] z-20 hidden w-[9.5rem] rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:left-[-4%] md:w-[10.5rem]">
-                  <IconLaptop className="mb-2 h-9 w-9 text-[#C1272D]" />
+                <div className="absolute -left-1 top-[10%] z-20 hidden w-[9.5rem] rounded-2xl border border-[#B92E2E]/45 bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:left-[-4%] md:w-[10.5rem]">
+                  <IconLaptop className="mb-2 h-9 w-9 text-[#B92E2E]" />
                   <p className="font-[family-name:var(--font-mk-inter),sans-serif] text-xl font-bold leading-none text-[#101828]">
                     2K+
                   </p>
@@ -350,8 +360,8 @@ export function MerrakiiLanding() {
                   </p>
                 </div>
 
-                <div className="absolute -right-1 top-[8%] z-20 hidden w-[9.5rem] rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:right-[-6%] md:w-[10.5rem]">
-                  <IconProgressRing className="mb-2 h-9 w-9 text-[#C1272D]" />
+                <div className="absolute -right-1 top-[8%] z-20 hidden w-[9.5rem] rounded-2xl border border-[#B92E2E]/45 bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:right-[-6%] md:w-[10.5rem]">
+                  <IconProgressRing className="mb-2 h-9 w-9 text-[#B92E2E]" />
                   <p className="font-[family-name:var(--font-mk-inter),sans-serif] text-xl font-bold leading-none text-[#101828]">
                     5K+
                   </p>
@@ -360,8 +370,8 @@ export function MerrakiiLanding() {
                   </p>
                 </div>
 
-                <div className="absolute bottom-[4%] right-[4%] z-20 hidden w-[9.5rem] rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:right-[2%] md:w-[10.5rem] lg:bottom-[6%]">
-                  <IconTutorBoard className="mb-2 h-9 w-9 text-[#C1272D]" />
+                <div className="absolute bottom-[4%] right-[4%] z-20 hidden w-[9.5rem] rounded-2xl border border-[#B92E2E]/45 bg-white p-3 shadow-[0_16px_40px_rgba(29,53,87,0.18)] sm:block md:right-[2%] md:w-[10.5rem] lg:bottom-[6%]">
+                  <IconTutorBoard className="mb-2 h-9 w-9 text-[#B92E2E]" />
                   <p className="font-[family-name:var(--font-mk-inter),sans-serif] text-[0.68rem] font-medium uppercase tracking-wide text-[#706767]">
                     Tutors
                   </p>
@@ -372,22 +382,22 @@ export function MerrakiiLanding() {
               </div>
 
               <div className="mt-4 flex justify-center gap-3 sm:hidden">
-                <div className="flex items-center gap-2 rounded-2xl border border-black/5 bg-white px-3 py-2 shadow-md">
-                  <IconLaptop className="h-8 w-8 shrink-0 text-[#C1272D]" />
+                <div className="flex items-center gap-2 rounded-2xl border border-[#B92E2E]/35 bg-white px-3 py-2 shadow-md">
+                  <IconLaptop className="h-8 w-8 shrink-0 text-[#B92E2E]" />
                   <div>
                     <p className="text-lg font-bold text-[#101828]">2K+</p>
                     <p className="text-[0.65rem] text-[#706767]">Video Courses</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 rounded-2xl border border-black/5 bg-white px-3 py-2 shadow-md">
-                  <IconProgressRing className="h-8 w-8 shrink-0 text-[#C1272D]" />
+                <div className="flex items-center gap-2 rounded-2xl border border-[#B92E2E]/35 bg-white px-3 py-2 shadow-md">
+                  <IconProgressRing className="h-8 w-8 shrink-0 text-[#B92E2E]" />
                   <div>
                     <p className="text-lg font-bold text-[#101828]">5K+</p>
                     <p className="text-[0.65rem] text-[#706767]">Online</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 rounded-2xl border border-black/5 bg-white px-3 py-2 shadow-md">
-                  <IconTutorBoard className="h-8 w-8 shrink-0 text-[#C1272D]" />
+                <div className="flex items-center gap-2 rounded-2xl border border-[#B92E2E]/35 bg-white px-3 py-2 shadow-md">
+                  <IconTutorBoard className="h-8 w-8 shrink-0 text-[#B92E2E]" />
                   <div>
                     <p className="text-[0.65rem] font-semibold text-[#706767]">Tutors</p>
                     <p className="text-lg font-bold text-[#101828]">250+</p>
@@ -402,7 +412,7 @@ export function MerrakiiLanding() {
               {HERO_DEST_EXAMS.map(({ flag, label, exam }) => (
                 <div key={`${label}-${exam}`} className="flex flex-col items-center gap-2">
                   <div
-                    className="flex w-full min-h-[3rem] items-center justify-center rounded-[999px] border border-white bg-gradient-to-b from-white via-[#f8f8f6] to-[#e8e8e4] px-2 py-2 text-center text-sm font-bold text-[#1D3557] shadow-[0_6px_0_rgba(29,53,87,0.12),0_10px_20px_rgba(29,53,87,0.1),inset_0_1px_0_rgba(255,255,255,0.9)] sm:min-h-[3.25rem] sm:text-base"
+                    className="flex w-full min-h-[3rem] items-center justify-center rounded-xl border border-white bg-gradient-to-b from-white via-[#f8f8f6] to-[#e8e8e4] px-2 py-2 text-center text-sm font-bold text-[#1D3557] shadow-[0_6px_0_rgba(29,53,87,0.12),0_10px_20px_rgba(29,53,87,0.1),inset_0_1px_0_rgba(255,255,255,0.9)] sm:min-h-[3.25rem] sm:text-base"
                     title={label}
                   >
                     <span className="mr-1.5 text-lg sm:text-xl" aria-hidden>
@@ -410,7 +420,7 @@ export function MerrakiiLanding() {
                     </span>
                     <span className="hidden truncate sm:inline">{label}</span>
                   </div>
-                  <div className="flex w-full min-h-[2.75rem] items-center justify-center rounded-[999px] bg-gradient-to-b from-[#2a4a73] via-[#1d3557] to-[#142a45] px-2 py-2 text-center text-xs font-bold text-white shadow-[0_5px_0_#0f1f33,0_8px_18px_rgba(29,53,87,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] sm:text-sm">
+                  <div className="flex w-full min-h-[2.75rem] items-center justify-center rounded-xl bg-gradient-to-b from-[#2a4a73] via-[#1d3557] to-[#142a45] px-2 py-2 text-center text-xs font-bold uppercase tracking-wide text-white shadow-[0_5px_0_#0f1f33,0_8px_18px_rgba(29,53,87,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] sm:text-sm">
                     {exam}
                   </div>
                 </div>
@@ -477,7 +487,7 @@ export function MerrakiiLanding() {
                 <a
                   key={label}
                   href={href}
-                  className="rounded-md px-4 py-3 text-base text-[#202A3B] no-underline hover:bg-[#C1272D]/10"
+                  className="rounded-md px-4 py-3 text-base text-[#202A3B] no-underline hover:bg-[#B92E2E]/10"
                   onClick={() => setMobileNavOpen(false)}
                 >
                   {label}
@@ -485,7 +495,7 @@ export function MerrakiiLanding() {
               ))}
               <Link
                 href="/search"
-                className="rounded-md px-4 py-3 text-base text-[#202A3B] no-underline hover:bg-[#C1272D]/10"
+                className="rounded-md px-4 py-3 text-base text-[#202A3B] no-underline hover:bg-[#B92E2E]/10"
                 onClick={() => setMobileNavOpen(false)}
               >
                 Search
@@ -501,11 +511,11 @@ export function MerrakiiLanding() {
           id="about"
           className="relative scroll-mt-28 border-t border-black/5 bg-[#FFFDF5] py-16 sm:py-20"
         >
-          <div className="pointer-events-none absolute inset-x-0 top-24 h-64 bg-gradient-to-r from-[#C22C31]/15 via-transparent to-[#001D87]/10 blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute inset-x-0 top-24 h-64 bg-gradient-to-r from-[#B92E2E]/15 via-transparent to-[#001D87]/10 blur-3xl" aria-hidden />
           <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
             <div className="mk-home-reveal space-y-6">
               <div className="relative">
-                <div className="absolute -left-4 top-8 h-48 w-40 rotate-[-6deg] overflow-hidden rounded-xl border-2 border-[#C22C31]/25 opacity-80 shadow-lg" aria-hidden>
+                <div className="absolute -left-4 top-8 h-48 w-40 rotate-[-6deg] overflow-hidden rounded-xl border-2 border-[#B92E2E]/25 opacity-80 shadow-lg" aria-hidden>
                   <Image
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=80"
                     alt=""
@@ -514,7 +524,7 @@ export function MerrakiiLanding() {
                     className="object-cover"
                   />
                 </div>
-                <div className="relative ml-8 mt-16 aspect-[4/5] max-w-md overflow-hidden rounded-[14px] border-[3px] border-[#C22C31]/35 shadow-xl">
+                <div className="relative ml-8 mt-16 aspect-[4/5] max-w-md overflow-hidden rounded-[14px] border-[3px] border-[#B92E2E]/35 shadow-xl">
                   <Image
                     src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900&h=1100&fit=crop"
                     alt="Students collaborating on campus"
@@ -525,10 +535,10 @@ export function MerrakiiLanding() {
                 </div>
               </div>
               <div className="relative inline-flex flex-col items-start gap-2 pt-2">
-                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold leading-tight text-[#C22C31] sm:text-4xl">
+                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold leading-tight text-[#B92E2E] sm:text-4xl">
                   About Merrakii
                 </h2>
-                <span className="h-1 w-14 rounded-full bg-[#C22C31]" aria-hidden />
+                <span className="h-1 w-14 rounded-full bg-[#B92E2E]" aria-hidden />
               </div>
             </div>
             <div className="mk-home-reveal">
@@ -554,18 +564,18 @@ export function MerrakiiLanding() {
                   />
                 </div>
                 <div className="relative mt-6 inline-flex flex-col gap-2">
-                  <span className="h-1 w-14 rounded-full bg-[#C22C31]" aria-hidden />
-                  <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#C22C31] sm:text-4xl">
+                  <span className="h-1 w-14 rounded-full bg-[#B92E2E]" aria-hidden />
+                  <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#B92E2E] sm:text-4xl">
                     What we do
                   </h2>
                 </div>
               </div>
-              <div className="mk-home-reveal relative overflow-hidden rounded-2xl border border-[#C22C31]/20 bg-[#1c2648] p-6 shadow-xl sm:p-10">
+              <div className="mk-home-reveal relative overflow-hidden rounded-2xl border border-[#B92E2E]/20 bg-[#1c2648] p-6 shadow-xl sm:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 opacity-60"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(194,44,49,0.85) 0%, rgba(28,38,72,0.92) 55%, rgba(0,29,135,0.75) 100%)",
+                      "linear-gradient(135deg, rgba(185,46,46,0.85) 0%, rgba(28,38,72,0.92) 55%, rgba(0,29,135,0.75) 100%)",
                   }}
                   aria-hidden
                 />
@@ -582,16 +592,16 @@ export function MerrakiiLanding() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-4 text-center">
               <div className="relative inline-block">
-                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#C22C31] sm:text-[2.5rem]">
+                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#B92E2E] sm:text-[2.5rem]">
                   Why choose Merrakii
                 </h2>
-                <span className="absolute -bottom-2 left-1/2 h-1 w-14 -translate-x-1/2 rounded-full bg-[#C22C31]/40" aria-hidden />
+                <span className="absolute -bottom-2 left-1/2 h-1 w-14 -translate-x-1/2 rounded-full bg-[#B92E2E]/40" aria-hidden />
               </div>
               <div className="relative inline-block">
-                <h3 className="font-[family-name:var(--font-mk-pt-serif),serif] text-2xl font-bold text-[#C22C31] sm:text-3xl">
+                <h3 className="font-[family-name:var(--font-mk-pt-serif),serif] text-2xl font-bold text-[#B92E2E] sm:text-3xl">
                   Services
                 </h3>
-                <span className="absolute -bottom-2 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-[#C22C31]/35" aria-hidden />
+                <span className="absolute -bottom-2 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-[#B92E2E]/35" aria-hidden />
               </div>
             </div>
 
@@ -615,10 +625,10 @@ export function MerrakiiLanding() {
 
             <div className="mk-home-reveal mx-auto mt-16 max-w-5xl text-center">
               <div className="relative inline-block">
-                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#C22C31] sm:text-[2.5rem]">
+                <h2 className="font-[family-name:var(--font-mk-pt-serif),serif] text-3xl font-bold text-[#B92E2E] sm:text-[2.5rem]">
                   Our Success
                 </h2>
-                <span className="absolute -bottom-2 left-1/2 h-1 w-14 -translate-x-1/2 rounded-full bg-[#C22C31]/40" aria-hidden />
+                <span className="absolute -bottom-2 left-1/2 h-1 w-14 -translate-x-1/2 rounded-full bg-[#B92E2E]/40" aria-hidden />
               </div>
             </div>
 
@@ -634,7 +644,7 @@ export function MerrakiiLanding() {
               ).map(({ n, l }) => (
                 <div key={l} className="mk-home-reveal text-center">
                   <p
-                    className="bg-gradient-to-r from-[#C22C31] to-[#001D87] bg-clip-text font-[family-name:var(--font-mk-pt-serif),serif] text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-transparent"
+                    className="bg-gradient-to-r from-[#B92E2E] to-[#001D87] bg-clip-text font-[family-name:var(--font-mk-pt-serif),serif] text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-transparent"
                   >
                     {n}
                   </p>
@@ -650,7 +660,7 @@ export function MerrakiiLanding() {
         {/* —— CTA —— */}
         <section className="border-t border-black/5 bg-[#FFFDF5] px-4 py-20 sm:px-6">
           <div className="mk-home-reveal mx-auto max-w-3xl text-center">
-            <p className="font-[family-name:var(--font-mk-sans),sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[#B01F24]">
+            <p className="font-[family-name:var(--font-mk-sans),sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[#B92E2E]">
               Change your trajectory
             </p>
             <h2 className="mk-home-serif mt-4 text-4xl font-semibold text-[#202A3B] sm:text-5xl">
@@ -663,13 +673,13 @@ export function MerrakiiLanding() {
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a
                 href={STUDY_ABROAD_SITE}
-                className="inline-flex min-h-[48px] items-center rounded-lg bg-gradient-to-br from-[#B01F24] to-[#8B1A2B] px-8 py-3 font-[family-name:var(--font-mk-sans),sans-serif] text-sm font-semibold text-white no-underline shadow-[0_4px_14px_rgba(139,26,43,0.32)]"
+                className="inline-flex min-h-[48px] items-center rounded-lg bg-gradient-to-br from-[#B92E2E] to-[#722018] px-8 py-3 font-[family-name:var(--font-mk-sans),sans-serif] text-sm font-semibold text-white no-underline shadow-[0_4px_14px_rgba(114,32,24,0.35)]"
               >
                 Study Abroad
               </a>
               <Link
                 href="/india"
-                className="inline-flex min-h-[48px] items-center rounded-lg border-2 border-[#B01F24] bg-white px-8 py-3 font-[family-name:var(--font-mk-sans),sans-serif] text-sm font-semibold text-[#B01F24] no-underline"
+                className="inline-flex min-h-[48px] items-center rounded-lg border-2 border-[#B92E2E] bg-white px-8 py-3 font-[family-name:var(--font-mk-sans),sans-serif] text-sm font-semibold text-[#B92E2E] no-underline"
               >
                 Study in India
               </Link>
@@ -691,22 +701,22 @@ export function MerrakiiLanding() {
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#202A3B]">Explore</h3>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
-                  <Link href="/#top" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/#top" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <a href={STUDY_ABROAD_SITE} className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <a href={STUDY_ABROAD_SITE} className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Study Abroad
                   </a>
                 </li>
                 <li>
-                  <Link href="/india" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/india" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Study in India
                   </Link>
                 </li>
                 <li>
-                  <Link href="/fields" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/fields" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Academic Fields
                   </Link>
                 </li>
@@ -716,22 +726,22 @@ export function MerrakiiLanding() {
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#202A3B]">Programmes</h3>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
-                  <Link href="/exams" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/exams" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Exams
                   </Link>
                 </li>
                 <li>
-                  <Link href="/search" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/search" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Search Institutes
                   </Link>
                 </li>
                 <li>
-                  <Link href="/catalog" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/catalog" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Catalogue
                   </Link>
                 </li>
                 <li>
-                  <Link href="/account" className="text-[#7A6655] no-underline hover:text-[#B01F24]">
+                  <Link href="/account" className="text-[#7A6655] no-underline hover:text-[#B92E2E]">
                     Account
                   </Link>
                 </li>
@@ -741,17 +751,17 @@ export function MerrakiiLanding() {
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#202A3B]">Contact</h3>
               <address className="mt-4 space-y-2 text-sm not-italic leading-relaxed text-[#7A6655]">
                 <p>
-                  <a href="mailto:info@merrakii.co.in" className="text-[#B01F24] hover:underline">
+                  <a href="mailto:info@merrakii.co.in" className="text-[#B92E2E] hover:underline">
                     info@merrakii.co.in
                   </a>
                 </p>
                 <p>
-                  <a href="tel:+919899088710" className="hover:text-[#B01F24]">
+                  <a href="tel:+919899088710" className="hover:text-[#B92E2E]">
                     +91 98990 88710
                   </a>
                 </p>
                 <p>
-                  <a href="https://merrakii.co.in/" className="hover:text-[#B01F24]">
+                  <a href="https://merrakii.co.in/" className="hover:text-[#B92E2E]">
                     merrakii.co.in
                   </a>
                 </p>
