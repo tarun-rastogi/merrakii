@@ -6,7 +6,7 @@
  */
 import net from "node:net";
 
-const port = Number(process.env.PORT || 3001);
+const port = Number(process.env.PORT || 3002);
 
 await new Promise((resolve, reject) => {
   const server = net.createServer();

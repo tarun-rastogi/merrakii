@@ -12,12 +12,12 @@ const shellLinks = [
 
 function LogoMark() {
   return (
-    <div
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#b01f24] to-[#0c226b] text-sm font-bold text-white shadow-md"
+    <img
+      src="/merrakii-logo.png"
+      alt="MERRAKii"
+      className="h-9 w-auto shrink-0 object-contain"
       aria-hidden
-    >
-      M
-    </div>
+    />
   );
 }
 

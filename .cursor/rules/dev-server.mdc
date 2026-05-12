@@ -4,9 +4,9 @@ globs:
   - "**/*"
 ---
 
-After **any** code change in this repo, ensure the site still runs:
+After **any** code change in this repo, ensure the site **runs with dev servers up** (per user preference: do not finish without starting/restarting when you changed code).
 
-1. From `digital-academic-marketplace/`, run **`npm run dev:restart`** in the **background** when you finish a batch of edits (unless the user asked not to touch processes). `scripts/restart-dev.sh` stops **all** matching `concurrently` / `tsx watch` / `next dev` for this monorepo (not just port listeners — `tsx watch` respawns and can cause `EADDRINUSE` if only ports are killed).
+1. From **`academic-intelligent-marketplace/`** (monorepo root), run **`npm run dev:restart`** in the **background** when you finish a batch of edits (unless the user asked not to touch processes). `scripts/restart-dev.sh` stops listeners on **3001** / **4000**; the `restart` script also kills matching `concurrently` / `tsx watch` / `next dev` so `tsx watch` respawns do not leave **`EADDRINUSE`**.
 2. **`dev:restart`** = kill script + `npm run dev` (includes `predev` → rebuild `@dam/shared`).
-3. If hot reload is clearly enough (tiny web-only tweak) you may skip restart — but on **`EADDRINUSE`**, API **`404`** for new routes, or odd **`500`** from Next, always run **`dev:restart`**.
+3. If hot reload handled it and both **3001** and **4000** are healthy, you may skip a full restart — but on **`EADDRINUSE`**, API issues, or Next **`500`**, always run **`dev:restart`** (or `ports:free` then `npm run dev`).
 4. Do **not** only tell the user to restart — run **`npm run dev:restart`** yourself when appropriate.

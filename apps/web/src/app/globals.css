@@ -1,23 +1,62 @@
 @import "tailwindcss";
 
-/* Inspired by Merrakii (merrakii.co.in) — burgundy, navy, gold, warm cream */
+/* Inspired by Merrakii — extracted brand palette (cream, crimson, navy, orange) */
 
 :root {
-  --m-navy: #0c226b;
-  --m-navy-mid: #163269;
-  --m-navy-deep: #071a47;
+  /* Merrakii palette — backgrounds, text, fills, borders (design extract) */
+  --mk-paper: #ffffff;
+  --mk-bg-warm-1: #ffffee;
+  --mk-bg-warm-2: #ffffed;
+  --mk-bg-neutral: #f8f9fa;
+  --mk-cream: #ffffee;
+  --mk-cream-dark: #ffffed;
+
+  --mk-orange: #ffa600;
+  --mk-orange-mid: #fca000;
+  --mk-orange-soft: #fd7e3b;
+  --mk-blue: #007bb5;
+  --mk-blue-social: #3b5998;
+
+  --mk-crimson-deep: #8b1a2b;
+  --mk-crimson-mid: #a61c2a;
+  --mk-crimson-bright: #b01f24;
+  --mk-crimson-hover: #c22c31;
+
+  --mk-navy-fill: #1c2648;
+  --mk-navy-bg: #2f345c;
+
+  --mk-text: #202a3b;
+  --mk-text-midnight: #111a45;
+  --mk-text-deep: #00062b;
+  --mk-text-mid: #646464;
+  --mk-text-soft: #7a6655;
+  --mk-text-grey: #7a7a7a;
+  --mk-text-cool: #a1a3b1;
+
+  /* Homepage aliases */
+  --mk-crimson: var(--mk-crimson-deep);
+  --mk-crimson-light: var(--mk-crimson-mid);
+  --mk-gold-cta: var(--mk-orange);
+
+  --mk-border-light: #eaeaea;
+  --mk-border-mid: #cdcdcd;
+
+  /* App-wide (India / marketplace surfaces) */
+  --m-navy: var(--mk-navy-fill);
+  --m-navy-mid: #2f345c;
+  --m-navy-deep: #00062b;
   --m-burgundy: #b01f24;
-  --m-burgundy-dark: #8b1a2a;
+  --m-burgundy-dark: #8b1a2b;
   --m-burgundy-soft: #f5e8ea;
-  --m-gold: #e39632;
-  --m-gold-dark: #c27812;
-  --m-cream: #f7f4ed;
-  --m-cream-deep: #ede9df;
-  --m-paper: #fffffe;
-  --m-ink: #1c1410;
-  --m-muted: #5e574d;
-  --m-border: #e0dcd3;
-  --m-border-strong: #cfc8ba;
+  --m-gold: #ffa600;
+  --m-gold-dark: #fca000;
+  --m-cream: #ffffee;
+  --m-cream-deep: #ffffed;
+  --m-paper: #ffffff;
+  --m-ink: #202a3b;
+  --m-muted: #7a7a7a;
+  --m-border: #eaeaea;
+  --m-border-strong: #cdcdcd;
 
   --bg-deep: var(--m-cream);
   --bg: var(--m-cream);
@@ -31,13 +70,13 @@
   --accent: var(--m-burgundy);
   --accent-dim: var(--m-burgundy-soft);
   --accent2: var(--m-navy);
-  --accent2-dim: rgba(12, 34, 107, 0.08);
-  --danger: #b91c1c;
+  --accent2-dim: rgba(28, 38, 72, 0.08);
+  --danger: #c22c31;
   --radius-lg: 0.625rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
-  --shadow-card: 0 4px 20px rgba(12, 34, 107, 0.06);
-  --shadow-card-hover: 0 12px 36px rgba(12, 34, 107, 0.1);
+  --shadow-card: 0 4px 20px rgba(28, 38, 72, 0.06);
+  --shadow-card-hover: 0 12px 36px rgba(28, 38, 72, 0.1);
   --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -63,8 +102,8 @@ body {
   color: var(--text);
   background-color: var(--m-cream);
   background-image:
-    radial-gradient(ellipse 900px 500px at 100% 0%, rgba(227, 150, 50, 0.07), transparent 50%),
-    radial-gradient(ellipse 800px 400px at 0% 100%, rgba(12, 34, 107, 0.06), transparent 45%),
+    radial-gradient(ellipse 900px 500px at 100% 0%, rgba(255, 166, 0, 0.07), transparent 50%),
+    radial-gradient(ellipse 800px 400px at 0% 100%, rgba(28, 38, 72, 0.06), transparent 45%),
     linear-gradient(180deg, var(--m-cream) 0%, var(--m-cream-deep) 100%);
   background-attachment: fixed;
 }
@@ -162,18 +201,18 @@ body {
   padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--m-ink);
-  background: linear-gradient(135deg, #f0c56e 0%, var(--m-gold) 100%);
-  border: 1px solid rgba(196, 120, 18, 0.35);
+  color: #fff;
+  background: linear-gradient(135deg, var(--mk-orange-mid) 0%, var(--mk-orange) 100%);
+  border: 1px solid rgba(255, 166, 0, 0.45);
   cursor: pointer;
-  box-shadow: 0 2px 12px rgba(227, 150, 50, 0.25);
+  box-shadow: 0 2px 12px rgba(255, 166, 0, 0.3);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
 }
 
 .dam-btn-gold:hover:not(:disabled) {
-  box-shadow: 0 4px 18px rgba(227, 150, 50, 0.35);
+  box-shadow: 0 4px 18px rgba(255, 166, 0, 0.38);
   transform: translateY(-1px);
 }
 
@@ -235,7 +274,7 @@ body {
 }
 
 .dam-btn-ghost:hover {
-  background: rgba(12, 34, 107, 0.06);
+  background: rgba(28, 38, 72, 0.06);
   color: var(--m-navy);
 }
 
@@ -244,7 +283,7 @@ body {
   margin-top: 0.25rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-strong);
-  background: #fafaf8;
+  background: var(--m-cream);
   padding: 0.65rem 0.875rem;
   font-size: 0.9375rem;
   color: var(--m-ink);
@@ -255,7 +294,7 @@ body {
 }
 
 .dam-input::placeholder {
-  color: #a8a29e;
+  color: var(--mk-text-cool);
 }
 
 .dam-input:focus {
@@ -275,7 +314,7 @@ body {
   margin-top: 0.25rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-strong);
-  background: #fafaf8;
+  background: var(--m-cream);
   padding: 0.65rem 0.875rem;
   font-size: 0.9375rem;
   color: var(--m-ink);
@@ -321,11 +360,16 @@ body {
 .dam-badge-navy {
   background: var(--accent2-dim);
   color: var(--m-navy);
-  border-color: rgba(12, 34, 107, 0.15);
+  border-color: rgba(28, 38, 72, 0.15);
 }
 
 .dam-gradient-text {
-  background: linear-gradient(120deg, var(--m-navy) 0%, var(--m-burgundy) 45%, var(--m-gold-dark) 100%);
+  background: linear-gradient(
+    120deg,
+    var(--mk-navy-fill) 0%,
+    var(--m-burgundy) 40%,
+    var(--mk-orange) 100%
+  );
   background-size: 120% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -340,11 +384,11 @@ body {
 
 /* Hero band (Merrakii-style top stripe) */
 .dam-hero-band {
-  background: linear-gradient(135deg, var(--m-navy-deep) 0%, var(--m-navy) 55%, #1a3d8f 100%);
+  background: linear-gradient(135deg, var(--mk-text-deep) 0%, var(--mk-navy-fill) 45%, var(--mk-navy-bg) 100%);
   color: #fff;
   border-radius: var(--radius-2xl);
   padding: 2rem 1.5rem;
-  box-shadow: 0 16px 48px rgba(12, 34, 107, 0.2);
+  box-shadow: 0 16px 48px rgba(28, 38, 72, 0.22);
 }
 
 .dam-hero-band .dam-lead {
@@ -364,7 +408,7 @@ body {
 }
 
 .dam-hero-band .dam-hero-highlight {
-  color: #f0d9a8;
+  color: var(--mk-bg-warm-1);
 }
 
 @media (max-width: 639.98px) {
@@ -414,7 +458,7 @@ body {
   flex-shrink: 0;
 }
 
-/* —— Merrakii marketing homepage (full width, burgundy/gold/cream — no blue) —— */
+/* —— Merrakii marketing homepage — uses --mk-* tokens —— */
 @keyframes mk-home-stat-glow {
   0%,
   100% {
@@ -426,20 +470,27 @@ body {
 }
 
 .mk-home-serif {
-  font-family: var(--font-mk-serif), "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+  font-family: var(--font-mk-serif), "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
 }
 
 .mk-home-section--muted {
-  background: #f5f5f4;
+  background: var(--mk-cream-dark);
+}
+
+.mk-home {
+  font-family: var(--font-mk-sans), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--mk-cream);
+  color: var(--mk-text);
 }
 
 .mk-home-btn-primary {
-  background: linear-gradient(135deg, #b01f24 0%, #8b181c 100%);
-  box-shadow: 0 4px 14px rgba(176, 31, 36, 0.28);
+  background: linear-gradient(135deg, var(--mk-crimson-bright) 0%, var(--mk-crimson-deep) 100%);
+  box-shadow: 0 4px 14px rgba(139, 26, 43, 0.32);
 }
 
 .mk-home-btn-outline {
-  border-color: #b01f24;
+  border-color: var(--mk-crimson);
+  color: var(--mk-crimson);
 }
 
 .mk-home-watermark {
@@ -452,7 +503,7 @@ body {
   font-size: clamp(5rem, 22vw, 14rem);
   font-weight: 700;
   line-height: 1;
-  color: rgba(176, 31, 36, 0.04);
+  color: color-mix(in srgb, var(--mk-crimson) 4%, transparent);
   font-family: var(--font-mk-serif), Georgia, serif;
   pointer-events: none;
   overflow: hidden;
@@ -487,18 +538,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Hard fallback: horizontal nav only at xl+; button hidden at xl+ */
-@media (max-width: 1279.98px) {
-  .mk-home-header .mk-home-nav {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  .mk-home-header .mk-home-mobile-nav {
-    display: none !important;
-  }
-}
+/* Homepage header: nav visibility uses Tailwind `lg:hidden` / `hidden lg:flex` on `.mk-home-header` */
 
 .shell-mobile-nav-btn {
   -webkit-tap-highlight-color: transparent;
@@ -510,7 +550,30 @@ body {
   }
 }
 
+/* —— Figma Design 2: horizontal tickers —— */
+@keyframes mk-marquee-ltr {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.mk-figma-marquee {
+  display: flex;
+  width: max-content;
+  animation: mk-marquee-ltr 45s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .mk-figma-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
   .mk-home-reveal {
     opacity: 1;
     transform: none;

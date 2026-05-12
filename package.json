@@ -18,6 +18,7 @@
     "db:seed": "npm run db:seed -w @dam/api",
     "db:studio": "npm run db:studio -w @dam/api",
     "build": "npm run build -w @dam/shared && npm run build -w @dam/api && npm run build -w @dam/web",
+    "build:vercel": "npm run build -w @dam/shared && npm run build -w @dam/web",
     "docs:live": "live-server docs --port=5500 --open=digi.html --watch=docs"
   },
   "devDependencies": {
