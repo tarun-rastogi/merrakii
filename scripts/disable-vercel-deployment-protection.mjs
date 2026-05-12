@@ -1,32 +1,80 @@
 #!/usr/bin/env node
 /**
- * Clears Vercel Authentication / password Deployment Protection via the Projects API so
- * deployment URLs can be opened without signing in (when SSO was the only barrier).
+ * Remove the Vercel login wall (Deployment Protection) so visitors open your site directly.
  *
- * Create a token: https://vercel.com/account/tokens
+ * Create a token: https://vercel.com/account/tokens (scopes: sufficient to update projects).
  *
  *   export VERCEL_TOKEN=xxxxxxxx
  *   export VERCEL_PROJECT=my-project-name
- * Optional (team-owned project):
+ * Under a team, set ONE of:
  *   export VERCEL_TEAM_ID=team_xxxxxxxxxxxxxxxxxxxxxxxx
+ *   export VERCEL_TEAM_SLUG=my-team-slug
  *
- *   node scripts/disable-vercel-deployment-protection.mjs
+ *   npm run vercel:disable-deployment-protection
+ *
+ * If this still prompts for login: check Team Settings → Security for a team default that
+ * forces protection, or disable protection manually:
+ * Project → Settings → Deployment Protection → Vercel Authentication / Password → Off (or narrower scope).
  */
 const token = process.env.VERCEL_TOKEN;
 const project = process.env.VERCEL_PROJECT;
 const teamId = process.env.VERCEL_TEAM_ID;
+const teamSlug = process.env.VERCEL_TEAM_SLUG;
 
 if (!token || !project) {
   console.error(
-    "Missing env: VERCEL_TOKEN and VERCEL_PROJECT (project name under Settings → General).\n",
+    "Set VERCEL_TOKEN and VERCEL_PROJECT (name from Vercel → Project → Settings → General).\n",
   );
   process.exit(1);
 }
 
-const q = teamId ? `?teamId=${encodeURIComponent(teamId)}` : "";
-const url = `https://api.vercel.com/v9/projects/${encodeURIComponent(project)}${q}`;
+if (teamId && teamSlug) {
+  console.error("Use only one of VERCEL_TEAM_ID or VERCEL_TEAM_SLUG.\n");
+  process.exit(1);
+}
 
-const res = await fetch(url, {
+function q() {
+  const p = new URLSearchParams();
+  if (teamId) p.set("teamId", teamId);
+  if (teamSlug) p.set("slug", teamSlug);
+  const s = p.toString();
+  return s ? `?${s}` : "";
+}
+
+const baseUrl = `https://api.vercel.com/v9/projects/${encodeURIComponent(project)}${q()}`;
+
+const getRes = await fetch(baseUrl, {
+  headers: { Authorization: `Bearer ${token}` },
+});
+const getBody = await getRes.text();
+
+if (!getRes.ok) {
+  console.error(`Could not read project (${getRes.status}). ${getBody.slice(0, 1500)}`);
+  process.exit(1);
+}
+
+let before;
+try {
+  before = JSON.parse(getBody);
+} catch {
+  before = {};
+}
+
+console.error(
+  "Current protection:",
+  JSON.stringify(
+    {
+      ssoProtection: before.ssoProtection ?? null,
+      passwordProtection: before.passwordProtection ?? null,
+      trustedIps: before.trustedIps ?? null,
+    },
+    null,
+    2,
+  ),
+);
+
+/** Null clears SSO, password, and IP allowlists so anonymous requests are not intercepted. */
+const patchRes = await fetch(baseUrl, {
   method: "PATCH",
   headers: {
     Authorization: `Bearer ${token}`,
@@ -35,12 +83,17 @@ const res = await fetch(url, {
   body: JSON.stringify({
     ssoProtection: null,
     passwordProtection: null,
+    trustedIps: null,
   }),
 });
 
-const text = await res.text();
-if (!res.ok) {
-  console.error(`Vercel API ${res.status}: ${text.slice(0, 2000)}`);
+const text = await patchRes.text();
+if (!patchRes.ok) {
+  console.error(`Vercel API PATCH ${patchRes.status}: ${text.slice(0, 2500)}`);
+  console.error(
+    "\nIf you see forbidden or insufficient scope: use an account/token that can edit this project,\n",
+    "or open the dashboard → Project Settings → Deployment Protection and turn protection off manually.\n",
+  );
   process.exit(1);
 }
 
@@ -50,4 +103,7 @@ try {
 } catch {
   /* ignore */
 }
-console.log(`Deployment protection cleared for project "${name}" (ssoProtection + passwordProtection).`);
+console.log(
+  `Updated project "${name}": cleared ssoProtection, passwordProtection, and trustedIps.\n` +
+    `Open your URL again in a private window.`,
+);
