@@ -99,7 +99,7 @@
     .doc-head-logos {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      align-items: flex-start;
       gap: 10px;
       margin-bottom: 14px;
       width: 100%;
@@ -107,32 +107,49 @@
 
     .doc-head-logos__row {
       display: flex;
-      width: 100%;
     }
 
+    /* Maple row hugs the crop box only — no full-width flex row (avoids false “centering”). */
     .doc-head-logos__row--maple {
       justify-content: flex-start;
+      align-self: flex-start;
+      max-width: 100%;
     }
 
     .doc-head-logos__row--merrakii {
       justify-content: flex-end;
+      width: 100%;
+      align-self: stretch;
+    }
+
+    /*
+     * Source file has large white margins (~54px L / ~127px T in a 1024×682 canvas), so the artwork
+     * looked indented even when the <img> was flush left. Crop to non-white bbox [54,127]–[965,538]
+     * → content 912×412 px, scale to fixed height below.
+     */
+    .doc-head-logos__maple-crop {
+      display: block;
+      overflow: hidden;
+      height: 120px;
+      width: min(calc(120px * 912 / 412), 100%);
+      flex-shrink: 0;
+    }
+
+    .doc-head-logos__maple-crop .logo--maple {
+      display: block;
+      height: calc(682px * 120px / 412);
+      width: auto;
+      max-width: none;
+      margin-left: calc(-54px * 120px / 412);
+      margin-top: calc(-127px * 120px / 412);
     }
 
     .doc-head-logos img {
       display: block;
-      object-fit: contain;
-    }
-
-    /* Wide raster logo: explicit height; row is flex-start so it stays flush left. */
-    .doc-head-logos .logo--maple {
-      height: 120px;
-      width: auto;
-      max-width: min(560px, 100%);
-      object-position: left center;
-      flex-shrink: 0;
     }
 
     .doc-head-logos .logo--merrakii {
+      object-fit: contain;
       max-height: 44px;
       max-width: min(200px, 70vw);
       flex-shrink: 0;
@@ -305,11 +322,15 @@
         text-decoration: none;
       }
 
-      .doc-head-logos .logo--maple {
+      .doc-head-logos__maple-crop {
         height: 100px;
-        width: auto;
-        max-width: 100%;
-        object-position: left center;
+        width: min(calc(100px * 912 / 412), 100%);
+      }
+
+      .doc-head-logos__maple-crop .logo--maple {
+        height: calc(682px * 100px / 412);
+        margin-left: calc(-54px * 100px / 412);
+        margin-top: calc(-127px * 100px / 412);
       }
 
       .doc-head-logos .logo--merrakii {
@@ -331,13 +352,15 @@
       <header class="doc-head">
         <div class="doc-head-logos">
           <div class="doc-head-logos__row doc-head-logos__row--maple">
-            <img
-              class="logo logo--maple"
-              src="images/maple-ai-logo.jpg"
-              alt="Maple AI Technologies"
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="doc-head-logos__maple-crop">
+              <img
+                class="logo logo--maple"
+                src="images/maple-ai-logo.jpg"
+                alt="Maple AI Technologies"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
           <div class="doc-head-logos__row doc-head-logos__row--merrakii">
             <img
