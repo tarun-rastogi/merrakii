@@ -124,7 +124,17 @@ def main() -> None:
     ws.merge_cells("A1:G1")
     ws["A1"] = "Discovery Phase — Completion Summary | Merrakii"
     ws["A1"].font = Font(bold=True, size=14)
-    ws.append(["Prepared by: Maple AI Technologies", "", "", "", "Prepared for: Merrakii", "", "Issue date: 13 May 2026"])
+    ws.append(
+        [
+            "Prepared by: Maple AI Technologies",
+            "",
+            "",
+            "",
+            "Prepared for: Munjal Universal Consultancy LLP",
+            "",
+            "Issue date: 13 May 2026",
+        ]
+    )
     ws.append([])
 
     headers = [
