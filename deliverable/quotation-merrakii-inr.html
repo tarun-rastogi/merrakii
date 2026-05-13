@@ -107,14 +107,17 @@
 
     .doc-head-logos img {
       display: block;
-      height: auto;
       object-fit: contain;
     }
 
+    /* Wide raster logo: drive size by height so it actually grows (max-height alone was ~72px wide at 48px). */
     .doc-head-logos .logo--maple {
-      max-height: 96px;
-      max-width: min(440px, 92vw);
+      height: 120px;
+      width: auto;
+      max-width: min(560px, 94vw);
       margin-right: auto;
+      object-position: left center;
+      flex-shrink: 0;
     }
 
     .doc-head-logos .logo--merrakii {
@@ -291,8 +294,10 @@
       }
 
       .doc-head-logos .logo--maple {
-        max-height: 80px;
-        max-width: min(360px, 100%);
+        height: 100px;
+        width: auto;
+        max-width: 100%;
+        object-position: left center;
       }
 
       .doc-head-logos .logo--merrakii {
@@ -316,9 +321,9 @@
           <img
             class="logo logo--maple"
             src="images/maple-ai-logo.jpg"
-            width="440"
-            height="96"
             alt="Maple AI Technologies"
+            loading="lazy"
+            decoding="async"
           />
           <img
             class="logo logo--merrakii"
