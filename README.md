@@ -157,7 +157,14 @@ The capture API is served by a container built from [executive-inputs-server/Doc
    git push -u origin main
    ```
 
-3. Enable **GitHub Pages** from branch `main` and folder **`/` (root)**, then open `https://<user>.github.io/<repo>/deliverable/digi.html` (HTML deliverables moved out of `/docs`; workbooks and `executive-inputs-config.js` stay under `docs/`). To save submissions into the shared **Merrakii_Business_Capture.xlsx** in the repo, deploy `executive-inputs-server` with the GitHub env vars above and set `EXECUTIVE_INPUTS_API_BASE` in `docs/executive-inputs-config.js` (see **Digi deck & Executive Inputs**).
+3. **GitHub Pages** (required for `https://<user>.github.io/merrakii/...`):
+
+   - Repo → **Settings** → **Pages** → **Build and deployment**.
+   - **Source:** choose **GitHub Actions** (recommended). The workflow [.github/workflows/deploy-github-pages.yml](.github/workflows/deploy-github-pages.yml) publishes `deliverable/`, the executive-inputs scripts under `docs/`, and Helvetica fonts expected by `digi.html`. After the first successful run, open [https://tarun-rastogi.github.io/merrakii/deliverable/digi.html](https://tarun-rastogi.github.io/merrakii/deliverable/digi.html).
+   - **If you use “Deploy from a branch” instead:** set branch **`main`** and folder **`/` (root)**. A root [`.nojekyll`](.nojekyll) is included so Jekyll does not strip static paths. Do **not** use **/docs** only—`digi.html` lives under **`deliverable/`** at repository root.
+   - Renaming the repository **does not** turn Pages on automatically; you must set (or re-set) the source above once.
+
+   To save submissions into **Merrakii_Business_Capture.xlsx**, deploy `executive-inputs-server` with the GitHub env vars above and set `EXEC_INPUTS_API_BASE` in `docs/executive-inputs-config.js` (see **Digi deck & Executive Inputs**).
 
 ## Production notes
 

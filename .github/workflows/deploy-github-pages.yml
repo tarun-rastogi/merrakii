@@ -1,0 +1,62 @@
+# Publishes the executive deck and related static assets to GitHub Pages.
+# After first push: Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble site (deliverable + docs scripts/fonts for digi.html)
+        run: |
+          set -euo pipefail
+          mkdir -p _site/deliverable/fonts _site/docs/fonts _site/docs/images
+          cp -r deliverable/. _site/deliverable/
+          cp docs/executive-inputs-config.js docs/merrakii-business-capture-data.js _site/docs/
+          cp docs/fonts/*.ttf _site/deliverable/fonts/
+          if [ -d docs/images ]; then cp -r docs/images/. _site/docs/images/; fi
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="refresh" content="0; url=deliverable/digi.html" />
+            <title>Merrakii — executive deck</title>
+            <link rel="canonical" href="deliverable/digi.html" />
+          </head>
+          <body style="font-family: system-ui, sans-serif; padding: 2rem;">
+            <p>If you are not redirected, open <a href="deliverable/digi.html">deliverable/digi.html</a>.</p>
+          </body>
+          </html>
+          EOF
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
