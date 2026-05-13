@@ -100,24 +100,47 @@
     .doc-head-logos {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
       gap: 10px;
       margin-bottom: 14px;
       width: 100%;
     }
 
-    .doc-head-logos__row {
+    /* Logos share one horizontal row */
+    .doc-head-logos__top {
       display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       width: 100%;
     }
 
-    .doc-head-logos__row--maple {
-      justify-content: flex-start;
+    /* Prepared by / for under respective sides */
+    .doc-head-logos__bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: flex-start;
+      gap: 16px 24px;
+      width: 100%;
     }
 
-    .doc-head-logos__row--merrakii {
-      justify-content: flex-end;
+    .doc-head-logos__caption-col {
+      flex: 1 1 0;
+      min-width: 0;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .doc-head-logos__caption-col--by {
+      text-align: left;
+      padding-right: 8px;
+    }
+
+    .doc-head-logos__caption-col--for {
+      text-align: right;
+      padding-left: 8px;
     }
 
     .doc-head-logos img {
@@ -125,25 +148,37 @@
       object-fit: contain;
     }
 
-    /* Wide raster logo: explicit height; row is flex-start so it stays flush left. */
-    /* Explicit max-width avoids min(…, 100%) resolving to 0 in some flex layouts (image vanishes). */
     .doc-head-logos .logo--maple {
       height: 60px;
       width: auto;
       max-width: min(280px, 92vw);
       margin: 0;
       padding: 0;
-      display: block;
       object-fit: contain;
       object-position: left center;
       flex-shrink: 0;
-      align-self: flex-start;
     }
 
     .doc-head-logos .logo--merrakii {
       max-height: 44px;
-      max-width: min(200px, 70vw);
+      max-width: min(200px, 46vw);
       flex-shrink: 0;
+    }
+
+    .doc-head-logos__label {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      margin-bottom: 3px;
+    }
+
+    .doc-head-logos__value {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
     .brand {
@@ -296,6 +331,10 @@
         break-after: avoid;
       }
 
+      .doc-head-logos {
+        break-inside: avoid;
+      }
+
       h2 {
         break-after: avoid;
       }
@@ -339,7 +378,7 @@
     <article class="sheet" id="quotation">
       <header class="doc-head">
         <div class="doc-head-logos">
-          <div class="doc-head-logos__row doc-head-logos__row--maple">
+          <div class="doc-head-logos__top">
             <img
               class="logo logo--maple"
               src="images/maple-ai-logo.jpg"
@@ -348,8 +387,6 @@
               height="60"
               decoding="async"
             />
-          </div>
-          <div class="doc-head-logos__row doc-head-logos__row--merrakii">
             <img
               class="logo logo--merrakii"
               src="images/merrakii-logo.png"
@@ -357,6 +394,16 @@
               height="44"
               alt="Merrakii"
             />
+          </div>
+          <div class="doc-head-logos__bottom">
+            <div class="doc-head-logos__caption-col doc-head-logos__caption-col--by">
+              <span class="doc-head-logos__label">Prepared by</span>
+              <span class="doc-head-logos__value">Tarun Rastogi · Maple AI Technologies</span>
+            </div>
+            <div class="doc-head-logos__caption-col doc-head-logos__caption-col--for">
+              <span class="doc-head-logos__label">Prepared for</span>
+              <span class="doc-head-logos__value">Munjal Universal Consultancy LLP</span>
+            </div>
           </div>
         </div>
         <div class="brand">Commercial quotation</div>
@@ -377,14 +424,6 @@
           <div>
             <dt>Currency &amp; FX basis</dt>
             <dd>Indian Rupees (INR)</dd>
-          </div>
-          <div>
-            <dt>Prepared for</dt>
-            <dd>Munjal Universal Consultancy LLP</dd>
-          </div>
-          <div>
-            <dt>Prepared by</dt>
-            <dd>Tarun Rastogi</dd>
           </div>
         </dl>
       </header>
