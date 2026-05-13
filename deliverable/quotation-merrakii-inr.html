@@ -100,7 +100,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 1rem 1.5rem;
       margin-bottom: 14px;
     }
@@ -112,13 +112,15 @@
     }
 
     .doc-head-logos .logo--maple {
-      max-height: 48px;
-      max-width: min(220px, 46vw);
+      max-height: 96px;
+      max-width: min(440px, 92vw);
+      margin-right: auto;
     }
 
     .doc-head-logos .logo--merrakii {
       max-height: 44px;
       max-width: min(200px, 42vw);
+      margin-left: auto;
     }
 
     .brand {
@@ -289,7 +291,8 @@
       }
 
       .doc-head-logos .logo--maple {
-        max-height: 40px;
+        max-height: 80px;
+        max-width: min(360px, 100%);
       }
 
       .doc-head-logos .logo--merrakii {
@@ -313,8 +316,8 @@
           <img
             class="logo logo--maple"
             src="images/maple-ai-logo.jpg"
-            width="220"
-            height="48"
+            width="440"
+            height="96"
             alt="Maple AI Technologies"
           />
           <img
