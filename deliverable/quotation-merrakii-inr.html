@@ -98,11 +98,24 @@
 
     .doc-head-logos {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1rem 1.5rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
       margin-bottom: 14px;
+      width: 100%;
+    }
+
+    .doc-head-logos__row {
+      display: flex;
+      width: 100%;
+    }
+
+    .doc-head-logos__row--maple {
+      justify-content: flex-start;
+    }
+
+    .doc-head-logos__row--merrakii {
+      justify-content: flex-end;
     }
 
     .doc-head-logos img {
@@ -110,20 +123,19 @@
       object-fit: contain;
     }
 
-    /* Wide raster logo: drive size by height so it actually grows (max-height alone was ~72px wide at 48px). */
+    /* Wide raster logo: explicit height; row is flex-start so it stays flush left. */
     .doc-head-logos .logo--maple {
       height: 120px;
       width: auto;
-      max-width: min(560px, 94vw);
-      margin-right: auto;
+      max-width: min(560px, 100%);
       object-position: left center;
       flex-shrink: 0;
     }
 
     .doc-head-logos .logo--merrakii {
       max-height: 44px;
-      max-width: min(200px, 42vw);
-      margin-left: auto;
+      max-width: min(200px, 70vw);
+      flex-shrink: 0;
     }
 
     .brand {
@@ -318,20 +330,24 @@
     <article class="sheet" id="quotation">
       <header class="doc-head">
         <div class="doc-head-logos">
-          <img
-            class="logo logo--maple"
-            src="images/maple-ai-logo.jpg"
-            alt="Maple AI Technologies"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            class="logo logo--merrakii"
-            src="images/merrakii-logo.png"
-            width="200"
-            height="44"
-            alt="Merrakii"
-          />
+          <div class="doc-head-logos__row doc-head-logos__row--maple">
+            <img
+              class="logo logo--maple"
+              src="images/maple-ai-logo.jpg"
+              alt="Maple AI Technologies"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="doc-head-logos__row doc-head-logos__row--merrakii">
+            <img
+              class="logo logo--merrakii"
+              src="images/merrakii-logo.png"
+              width="200"
+              height="44"
+              alt="Merrakii"
+            />
+          </div>
         </div>
         <div class="brand">Commercial quotation</div>
         <h1>Merrakii — implementation services</h1>
