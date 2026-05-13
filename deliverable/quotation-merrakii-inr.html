@@ -126,13 +126,15 @@
     }
 
     /* Wide raster logo: explicit height; row is flex-start so it stays flush left. */
+    /* Explicit max-width avoids min(…, 100%) resolving to 0 in some flex layouts (image vanishes). */
     .doc-head-logos .logo--maple {
       height: 120px;
       width: auto;
-      max-width: min(560px, 100%);
+      max-width: min(560px, 92vw);
       margin: 0;
       padding: 0;
       display: block;
+      object-fit: contain;
       object-position: left center;
       flex-shrink: 0;
       align-self: flex-start;
@@ -314,7 +316,8 @@
       .doc-head-logos .logo--maple {
         height: 100px;
         width: auto;
-        max-width: 100%;
+        max-width: 520px;
+        object-fit: contain;
         object-position: left center;
       }
 
@@ -341,7 +344,8 @@
               class="logo logo--maple"
               src="images/maple-ai-logo.jpg"
               alt="Maple AI Technologies"
-              loading="lazy"
+              width="180"
+              height="120"
               decoding="async"
             />
           </div>
