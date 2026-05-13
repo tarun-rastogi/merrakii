@@ -96,6 +96,31 @@
       margin-bottom: 18px;
     }
 
+    .doc-head-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .doc-head-logos img {
+      display: block;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .doc-head-logos .logo--maple {
+      max-height: 48px;
+      max-width: min(220px, 46vw);
+    }
+
+    .doc-head-logos .logo--merrakii {
+      max-height: 44px;
+      max-width: min(200px, 42vw);
+    }
+
     .brand {
       font-size: 0.75rem;
       font-weight: 600;
@@ -262,6 +287,14 @@
         color: inherit;
         text-decoration: none;
       }
+
+      .doc-head-logos .logo--maple {
+        max-height: 40px;
+      }
+
+      .doc-head-logos .logo--merrakii {
+        max-height: 38px;
+      }
     }
   </style>
 </head>
@@ -276,6 +309,22 @@
 
     <article class="sheet" id="quotation">
       <header class="doc-head">
+        <div class="doc-head-logos">
+          <img
+            class="logo logo--maple"
+            src="images/maple-ai-logo.jpg"
+            width="220"
+            height="48"
+            alt="Maple AI Technologies"
+          />
+          <img
+            class="logo logo--merrakii"
+            src="images/merrakii-logo.png"
+            width="200"
+            height="44"
+            alt="Merrakii"
+          />
+        </div>
         <div class="brand">Commercial quotation</div>
         <h1>Merrakii — implementation services</h1>
         <dl class="meta">
