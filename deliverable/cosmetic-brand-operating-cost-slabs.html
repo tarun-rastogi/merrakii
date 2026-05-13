@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operating cost slabs — Payment gateway &amp; AWS | Cosmetic brand website</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cyan: #00b4d8;
+      --blue: #4361ee;
+      --purple: #7c3aed;
+      --ink: #1a1d24;
+      --muted: #4a505c;
+      --line: #d8dce4;
+      --paper: #fff;
+      --wash: #f4f6fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--wash);
+      line-height: 1.5;
+    }
+    .toolbar { max-width: 210mm; margin: 12px auto; padding: 0 16px; }
+    .btn-print {
+      font-family: inherit;
+      font-weight: 700;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #fff;
+      cursor: pointer;
+    }
+    .sheet {
+      max-width: 210mm;
+      margin: 20px auto 48px;
+      padding: 18mm 16mm 20mm;
+      background: var(--paper);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border-radius: 4px;
+    }
+    .sheet::before {
+      content: "";
+      display: block;
+      height: 4px;
+      margin: -18mm -16mm 18px -16mm;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--purple));
+    }
+    h1 { margin: 0 0 8px; font-size: 1.35rem; }
+    .doc-sub { margin: 0 0 18px; color: var(--muted); font-size: 0.95rem; }
+    p { margin: 0 0 12px; }
+    .slab-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 16px 0;
+    }
+    .slab-table th {
+      text-align: left;
+      padding: 10px 8px;
+      background: linear-gradient(135deg, rgba(0,180,216,0.12), rgba(67,97,238,0.08));
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+    .slab-table td {
+      padding: 10px 8px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .slab-table tr:nth-child(even) td { background: #fafbfd; }
+    .slab-name { font-weight: 700; color: var(--blue); white-space: nowrap; }
+    .num { font-variant-numeric: tabular-nums; }
+    .formula {
+      margin: 14px 0;
+      padding: 12px 14px;
+      background: rgba(0,180,216,0.08);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.92rem;
+    }
+    .formula strong { color: var(--cyan); }
+    .footnotes {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footnotes ol { margin: 8px 0 0; padding-left: 1.2rem; }
+    .footnotes li { margin-bottom: 6px; }
+    @media print {
+      .toolbar { display: none; }
+      body { background: #fff; }
+      .sheet { box-shadow: none; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <article class="sheet">
+    <h1>Operating cost slabs — payment gateway &amp; AWS</h1>
+    <p class="doc-sub">
+      Illustrative three-level model for a <strong>six-product cosmetic D2C website</strong> (responsive web + admin + checkout). Maple AI Technologies prepared this for planning; it is not a quote from Razorpay or AWS.
+    </p>
+
+    <div class="formula">
+      <strong>Payment gateway charge (this document):</strong> <strong>2%</strong> of <em>successful</em> card/UPI/netbanking transaction value processed in the month (your monthly GMV through the gateway).<br />
+      <span style="color: var(--muted)">Monthly PG fee (₹) ≈ 0.02 × monthly GMV (₹). Example: GMV ₹10,00,000 → ₹20,000 at 2%.</span>
+    </div>
+
+    <p>
+      <strong>Peak concurrent shoppers</strong> means how many customers are actively browsing or checking out <em>at the same busy moment</em> (not total customers per day). It drives how much server capacity you reserve.
+      <strong>Peak API requests</strong> is a rough order-of-magnitude for your website + checkout APIs at that same peak (health checks and static assets excluded).
+    </p>
+
+    <table class="slab-table">
+      <thead>
+        <tr>
+          <th>Slab</th>
+          <th>Orders / month <br /><span style="font-weight:400;color:var(--muted)">(paid orders)</span></th>
+          <th>Peak concurrent shoppers <br /><span style="font-weight:400;color:var(--muted)">(at one time)</span></th>
+          <th>Peak API req. <br /><span style="font-weight:400;color:var(--muted)">(~req/s)</span></th>
+          <th>Illustrative monthly GMV <br /><span style="font-weight:400;color:var(--muted)">(example @ ₹450 AOV)</span></th>
+          <th>PG @ <strong>2%</strong> of GMV <br /><span style="font-weight:400;color:var(--muted)">(₹ / month)</span></th>
+          <th>AWS hosting <br /><span style="font-weight:400;color:var(--muted)">(₹ / month, indicative band)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="slab-name">Starter</td>
+          <td class="num">up to 1,000</td>
+          <td class="num">~30–50</td>
+          <td class="num">~8–15</td>
+          <td class="num">₹ 4,50,000</td>
+          <td class="num"><strong>₹ 9,000</strong></td>
+          <td class="num">₹ 5,000 – ₹ 9,000</td>
+        </tr>
+        <tr>
+          <td class="slab-name">Growth</td>
+          <td class="num">1,001 – 5,000</td>
+          <td class="num">~80–150</td>
+          <td class="num">~25–45</td>
+          <td class="num">₹ 18,00,000</td>
+          <td class="num"><strong>₹ 36,000</strong></td>
+          <td class="num">₹ 14,000 – ₹ 24,000</td>
+        </tr>
+        <tr>
+          <td class="slab-name">Scale</td>
+          <td class="num">5,001 – 15,000</td>
+          <td class="num">~200–400</td>
+          <td class="num">~60–100</td>
+          <td class="num">₹ 54,00,000</td>
+          <td class="num"><strong>₹ 1,08,000</strong></td>
+          <td class="num">₹ 30,000 – ₹ 52,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.88rem;color:var(--muted)">
+      Illustrative GMV uses <strong>average order value (AOV) of ₹450</strong> (cosmetic bundles); replace with your forecast: <em>GMV ≈ orders × your AOV</em>, then PG @ 2% = 0.02 × GMV.
+    </p>
+
+    <div class="footnotes">
+      <strong>Important notes</strong>
+      <ol>
+        <li><strong>Payment gateway:</strong> Real-world fees depend on the provider (e.g. Razorpay), <strong>payment method</strong> (UPI vs card vs international), and <strong>GST on the gateway fee</strong>. The <strong>2%</strong> figure here is a <strong>planning slab</strong> you asked for—not a Razorpay rate card.</li>
+        <li><strong>AWS:</strong> Bands assume a typical stack (app + API + managed database + object storage + CDN in <strong>ap-south-1</strong>), modest DR/backups, and no heavy ML/media pipelines. Spikes, logs, extra environments, or third-party SaaS are extra.</li>
+        <li><strong>Cash on delivery (COD):</strong> Not included in the 2% card—there is usually no PG MDR on COD; operational cost is fulfilment/returns.</li>
+        <li>Validate both lines with your <strong>actual</strong> gateway agreement and an AWS <strong>Cost Calculator</strong> / solution architect before signing budgets.</li>
+      </ol>
+    </div>
+  </article>
+</body>
+</html>

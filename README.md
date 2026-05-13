@@ -1,6 +1,6 @@
-# Digital Academic Marketplace (local MVP)
+# Merrakii (local MVP)
 
-Monorepo: **Fastify + Prisma + PostgreSQL** API (`apps/api`) and **Next.js** web app (`apps/web`). Shared validation/types live in `packages/@dam/shared` for future React Native reuse.
+Monorepo: **Fastify + Prisma + PostgreSQL** API (`apps/api`) and **Next.js** web app (`apps/web`). Shared validation/types live in `packages/shared` (`@merrakii/shared`) for future React Native reuse.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Monorepo: **Fastify + Prisma + PostgreSQL** API (`apps/api`) and **Next.js** web
 
    ```bash
    npm install
-   npm run build -w @dam/shared
+   npm run build -w @merrakii/shared
    ```
 
 3. **Configure environment**
@@ -47,10 +47,10 @@ Monorepo: **Fastify + Prisma + PostgreSQL** API (`apps/api`) and **Next.js** web
    npm run dev
    ```
 
-   - Web: [http://localhost:3001](http://localhost:3001)
+   - Web: [http://localhost:3002](http://localhost:3002)
    - API: [http://localhost:4000/api/health](http://localhost:4000/api/health)
 
-6. **After code changes (clean restart)** — stops **all** prior `concurrently` / `tsx watch` / `next dev` instances for this repo, frees **3001** and **4000**, rebuilds `@dam/shared`, then starts both servers:
+6. **After code changes (clean restart)** — stops **all** prior `concurrently` / `tsx watch` / `next dev` instances for this repo, frees **3002** (web) and **4000** (API), rebuilds `@merrakii/shared`, then starts both servers:
 
    ```bash
    npm run dev:restart
@@ -74,7 +74,7 @@ Monorepo: **Fastify + Prisma + PostgreSQL** API (`apps/api`) and **Next.js** web
 
 | Script        | Purpose                          |
 |---------------|----------------------------------|
-| `npm run dev` | API (4000) + Next (3001)         |
+| `npm run dev` | API (4000) + Next (3002)         |
 | `npm run db:push` | `prisma db push` (dev schema) |
 | `npm run db:seed` | Seed fields, exams, institutes |
 | `npm run db:migrate` | `prisma migrate dev`        |
@@ -100,7 +100,7 @@ Plus catalog tables: `AcademicField`, `Exam`, `Institute`, `Program`.
 
 ## Digi deck & Executive Inputs (HTML + Excel)
 
-- Static deck: [docs/digi.html](docs/digi.html) — go to the **Executive inputs** slide, answer per section, then **Submit to workbook (Excel)**.
+- Static deck: [deliverable/digi.html](deliverable/digi.html) — go to the **Executive inputs** slide, answer per section, then **Submit to workbook (Excel)**.
 - Workbook: [docs/Merrakii_Business_Capture.xlsx](docs/Merrakii_Business_Capture.xlsx) — one sheet per section (Company content, Brand and contact, …). Column **A** is the question, column **B** is a placeholder for answers. The first sheet, **Submission log**, stores **one row per section + question number**: each submit **updates** that row (timestamp and response) if it already exists, or **inserts** it once. Columns: `Timestamp (UTC)`, section, `Q#`, question text, response. **Note:** two different visitors editing the same question share one row (last submit wins). Regenerate the questionnaire structure (including the **Submission log** header) with:
   `python scripts/generate_merrakii_business_questionnaire.py` (openpyxl required).
 
@@ -111,7 +111,7 @@ Plus catalog tables: `AcademicField`, `Exam`, `Institute`, `Program`.
 | Variable | Purpose |
 |----------|---------|
 | `EXECUTIVE_INPUTS_GITHUB_TOKEN` | Fine-grained or classic PAT with **Contents: Read and write** on this repository |
-| `EXECUTIVE_INPUTS_GITHUB_REPO` | e.g. `tarun-rastogi/academic-intelligent-marketplace` |
+| `EXECUTIVE_INPUTS_GITHUB_REPO` | e.g. `tarun-rastogi/merrakii` |
 | `EXECUTIVE_INPUTS_GITHUB_FILE` | Default `docs/Merrakii_Business_Capture.xlsx` |
 | `EXECUTIVE_INPUTS_GITHUB_BRANCH` | Default `main` |
 | `CORS_ALLOW_ORIGIN` | Your GitHub Pages origin, e.g. `https://tarun-rastogi.github.io` (or `*` for any origin) |
@@ -124,7 +124,7 @@ Plus catalog tables: `AcademicField`, `Exam`, `Institute`, `Program`.
 2. In [Render](https://dashboard.render.com/): **New** → **Blueprint** → connect this repository → apply [render.yaml](render.yaml).
 3. When prompted, create the **secret** `EXECUTIVE_INPUTS_GITHUB_TOKEN` (GitHub → Settings → Developer settings → [Fine-grained token](https://github.com/settings/tokens?type=beta): grant **Contents: Read and write** for this repository only, branch: `main`).
 4. After deploy, open `https://merrakii-executive-capture.onrender.com/api/health` and confirm `github_capture.configured` is `true` (it stays `true` as long as the token is set; it is never exposed to the client).
-5. The deck in [docs/executive-inputs-config.js](docs/executive-inputs-config.js) points at the same default hostname; if you rename the service in Render, change that one line to your `https://<name>.onrender.com` and push. If the GitHub repository owner/name is not `tarun-rastogi/academic-intelligent-marketplace`, update `EXECUTIVE_INPUTS_GITHUB_REPO` in the Render environment or in `render.yaml` before applying the Blueprint.
+5. The deck in [docs/executive-inputs-config.js](docs/executive-inputs-config.js) points at the same default hostname; if you rename the service in Render, change that one line to your `https://<name>.onrender.com` and push. If the GitHub repository owner/name is not `tarun-rastogi/merrakii`, update `EXECUTIVE_INPUTS_GITHUB_REPO` in the Render environment or in `render.yaml` before applying the Blueprint.
 
 The capture API is served by a container built from [executive-inputs-server/Dockerfile](executive-inputs-server/Dockerfile) (build context: repository root). Local test: `docker build -f executive-inputs-server/Dockerfile -t merrakii-exec:local .` and run with the same environment variables.
 
@@ -137,11 +137,13 @@ The capture API is served by a container built from [executive-inputs-server/Doc
   python executive-inputs-server/app.py
   ```
 
-  Open [http://127.0.0.1:5050/digi.html](http://127.0.0.1:5050/digi.html) — same origin allows submit without `EXEC_INPUTS_API_BASE`. Writes upsert into the local `docs/Merrakii_Business_Capture.xlsx` Submission log.
+  Open [http://127.0.0.1:5050/deliverable/digi.html](http://127.0.0.1:5050/deliverable/digi.html) — same origin allows submit without `EXEC_INPUTS_API_BASE`. Writes upsert into the local `docs/Merrakii_Business_Capture.xlsx` Submission log.
 
-**Public GitHub Pages** (`https://<user>.github.io/<repo>/digi.html`): set `EXEC_INPUTS_API_BASE` in `executive-inputs-config.js` to the deployed service URL, push, and wait for the Pages build.
+**Public GitHub Pages** (`https://<user>.github.io/<repo>/deliverable/digi.html`): set `EXEC_INPUTS_API_BASE` in `docs/executive-inputs-config.js` to the deployed service URL, push, and wait for the Pages build.
 
 ## GitHub (host the repo)
+
+**Canonical remote:** [github.com/tarun-rastogi/merrakii](https://github.com/tarun-rastogi/merrakii).
 
 1. Create a new empty repository in your GitHub account (no README/license if you will push an existing history).
 2. From this folder:
@@ -149,13 +151,13 @@ The capture API is served by a container built from [executive-inputs-server/Doc
    ```bash
    git init
    git add -A
-   git commit -m "Initial commit: digital academic marketplace"
+   git commit -m "Initial commit: Merrakii platform"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/<your-repo>.git
+   git remote add origin https://github.com/<your-username>/merrakii.git
    git push -u origin main
    ```
 
-3. Enable **GitHub Pages** from branch `main` and folder `docs/`, and open `https://<user>.github.io/<repo>/digi.html`. To save submissions into the shared **Merrakii_Business_Capture.xlsx** in the repo, deploy `executive-inputs-server` with the GitHub env vars above and set `EXECUTIVE_INPUTS_API_BASE` in `docs/executive-inputs-config.js` (see **Digi deck & Executive Inputs**).
+3. Enable **GitHub Pages** from branch `main` and folder **`/` (root)**, then open `https://<user>.github.io/<repo>/deliverable/digi.html` (HTML deliverables moved out of `/docs`; workbooks and `executive-inputs-config.js` stay under `docs/`). To save submissions into the shared **Merrakii_Business_Capture.xlsx** in the repo, deploy `executive-inputs-server` with the GitHub env vars above and set `EXECUTIVE_INPUTS_API_BASE` in `docs/executive-inputs-config.js` (see **Digi deck & Executive Inputs**).
 
 ## Production notes
 

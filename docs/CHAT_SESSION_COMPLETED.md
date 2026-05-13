@@ -2,13 +2,13 @@
 
 This file records **everything marked done** in the chat that produced it: deck updates, docs, persona skills, and related fixes. Use it as a handoff or audit trail.
 
-**Scope:** `digital-academic-marketplace/docs/digi.html`, docs under this repo, and **`Skills/`** at the Tarun Working Env workspace root.
+**Scope:** `merrakii/deliverable/digi.html`, docs under this repo, and **`Skills/`** at the Tarun Working Env workspace root.
 
 **Last updated:** April 2026  
 
 ---
 
-## 1. Executive deck (`docs/digi.html`)
+## 1. Executive deck (`deliverable/digi.html`)
 
 ### Global / earlier thread (carried forward)
 - Merrakii logo, fonts (Helvetica World + Noto), channels slide images, Why/What/How narrative slides.
@@ -27,7 +27,7 @@ This file records **everything marked done** in the chat that produced it: deck 
 
 ---
 
-## 2. Documentation (`digital-academic-marketplace/docs/`)
+## 2. Documentation (`merrakii/docs/`)
 
 | File | Status |
 |------|--------|
@@ -38,7 +38,7 @@ This file records **everything marked done** in the chat that produced it: deck 
 
 ## 3. Persona skills (`Tarun Working Env/Skills/`)
 
-Paths are relative to the **Tarun Working Env** workspace root (sibling of `digital-academic-marketplace/`).
+Paths are relative to the **Tarun Working Env** workspace root (sibling of `merrakii/`).
 
 | File | Status |
 |------|--------|
@@ -63,16 +63,16 @@ Paths are relative to the **Tarun Working Env** workspace root (sibling of `digi
 ## 5. Quick file checklist
 
 **Modified**
-- `digital-academic-marketplace/docs/digi.html` — Why, What, How slides; slide order (Channels ↔ MVP).
+- `merrakii/deliverable/digi.html` — Why, What, How slides; slide order (Channels ↔ MVP).
 
 **Added**
-- `digital-academic-marketplace/docs/PRODUCT_REQUIREMENTS.md`
-- `digital-academic-marketplace/docs/CHAT_SESSION_COMPLETED.md` (this file)
+- `merrakii/docs/PRODUCT_REQUIREMENTS.md`
+- `merrakii/docs/CHAT_SESSION_COMPLETED.md` (this file)
 - `Skills/skill_*.md` (seven persona files at workspace root `Skills/`)
 
 **Referenced in chat, not necessarily edited here**
-- `digital-academic-marketplace/docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md`
-- `digital-academic-marketplace/docs/PRD_Multi_Vendor_Academic_Preparation_Portal.md`
+- `merrakii/docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md`
+- `merrakii/docs/PRD_Multi_Vendor_Academic_Preparation_Portal.md`
 
 ---
 

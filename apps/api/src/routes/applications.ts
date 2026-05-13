@@ -1,6 +1,6 @@
 import type { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
-import { applicationCreateSchema } from "@dam/shared";
+import { applicationCreateSchema } from "@merrakii/shared";
 import { prisma } from "../lib/prisma.js";
 import { requireUser } from "../lib/auth-guard.js";
 import { normalizePhone } from "../lib/phone.js";

@@ -1,4 +1,4 @@
-# Digital Academic Marketplace — engineering handoff (from implementation chats)
+# Merrakii — engineering handoff (from implementation chats)
 
 This document summarizes **product-relevant engineering work** completed in Cursor chats so it can feed a **separate conversation** on business plan, functional scope, cost, timelines, and roadmap. It is not a business plan itself; it is a **factual record of what exists and how it behaves**.
 
@@ -6,7 +6,7 @@ This document summarizes **product-relevant engineering work** completed in Curs
 
 ## 1. Product snapshot (what the app is)
 
-- **Name / positioning:** Digital Academic Marketplace — browse **fields → exams → institutes → programs**, apply with a structured form, pay (Razorpay test mode and/or **demo checkout**), then see **enrollment-style confirmation**.
+- **Name / positioning:** Merrakii — browse **fields → exams → institutes → programs**, apply with a structured form, pay (Razorpay test mode and/or **demo checkout**), then see **enrollment-style confirmation**.
 - **Audience (MVP framing):** Students in India exploring competitive exams and institute programs; **partner** institutes get an enrollment-oriented post-payment path; **non-partner** listings route as **qualified leads** after payment.
 - **Auth:** Phone OTP (dev-friendly fixed OTP documented elsewhere in repo); session cookie against API.
 - **Visual / UX theme:** Light “premium counselling” style — burgundy `#B01F24`, navy `#0C226B`, gold `#E39632`, cream; **Source Sans 3**; shared chrome via `Shell` (nav: home, all exams, fields, account).
@@ -19,19 +19,19 @@ This document summarizes **product-relevant engineering work** completed in Curs
 |--------|--------|--------|
 | Monorepo | npm workspaces | `apps/api`, `apps/web`, `packages/shared` |
 | API | Fastify, Prisma, PostgreSQL | Cookie sessions, CORS to web origin |
-| Web | Next.js 15 (App Router), Turbopack dev | Default dev port **3001** |
+| Web | Next.js 15 (App Router), Turbopack dev | Default dev port **3002** |
 | Shared | Zod schemas | `applicationCreateSchema`, phone/OTP schemas |
 | DB | Docker Compose Postgres | Typical host port **5433** (see repo `docker-compose.yml`) |
 
 **Default local URLs**
 
-- Web: `http://localhost:3001`
+- Web: `http://localhost:3002`
 - API: `http://localhost:4000` under `/api/*`
 - Web calls API via `NEXT_PUBLIC_API_URL` (fallback `http://localhost:4000/api`)
 
 **Important env (API, partial list)**
 
-- `DATABASE_URL`, `WEB_ORIGIN` (must match web origin, e.g. `http://localhost:3001`)
+- `DATABASE_URL`, `WEB_ORIGIN` (must match web origin, e.g. `http://localhost:3002`)
 - `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` — optional; if missing, **Razorpay create-order** returns 503
 - `ALLOW_DUMMY_PAYMENTS` — `true` / `1` enables demo checkout **outside** `NODE_ENV=development` (see §4)
 - `DEV_OTP` — dev OTP for login
@@ -111,14 +111,14 @@ This document summarizes **product-relevant engineering work** completed in Curs
 
 ### 5.1 Port and origin conventions
 
-- Web moved to **3001** (3000 conflicts common); API **4000**
+- Web dev on **3002** (3000/3001 conflicts common); API **4000**
 - `WEB_ORIGIN` must stay aligned with the web app URL for cookies/CORS
 
 ### 5.2 `dev:restart` and `scripts/restart-dev.sh`
 
 - **Problem solved:** `EADDRINUSE` on **4000** when only killing listeners — **`tsx watch`** and multiple **`concurrently`** trees respawned children
-- **Script behavior:** `pkill` patterns for this repo’s `concurrently`, `tsx watch`, and `next dev` (path fragment `digital-academic-marketplace/node_modules/.bin`), then frees **3001** and **4000**
-- **npm script:** `npm run dev:restart` → restart script → `npm run dev` (runs `predev` → builds `@dam/shared`)
+- **Script behavior:** `pkill` patterns for this repo’s `concurrently`, `tsx watch`, and `next dev` (this repo’s `node_modules/.bin`), then frees **3002** (web) and **4000** (API)
+- **npm script:** `npm run dev:restart` → restart script → `npm run dev` (runs `predev` → builds `@merrakii/shared`)
 
 ### 5.3 Agent / team rule
 
@@ -172,7 +172,7 @@ This document summarizes **product-relevant engineering work** completed in Curs
 
 Paste a short pointer like:
 
-> Use `docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md` in the Digital Academic Marketplace repo as the **source of truth for current MVP behavior**, routes, partner vs non-partner flows, payment modes (Razorpay vs dummy), and dev constraints. Build the business plan, feature roadmap, cost model, and timelines **on top of that baseline**, and call out gaps explicitly.
+> Use `docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md` in the Merrakii repo as the **source of truth for current MVP behavior**, routes, partner vs non-partner flows, payment modes (Razorpay vs dummy), and dev constraints. Build the business plan, feature roadmap, cost model, and timelines **on top of that baseline**, and call out gaps explicitly.
 
 ---
 

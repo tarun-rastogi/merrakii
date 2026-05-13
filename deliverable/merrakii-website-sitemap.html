@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merrakii — Website Sitemap (IA)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --muted: #4a505c;
+      --line: #d8dce4;
+      --accent: #b01f24;
+      --wash: #f6f7f9;
+      --paper: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--wash);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 12px auto;
+      padding: 0 16px;
+    }
+    .btn-print {
+      font: inherit;
+      font-weight: 600;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .sheet {
+      max-width: 210mm;
+      margin: 8px auto 40px;
+      padding: 16mm;
+      background: var(--paper);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .letterhead {
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    .doc-sub { margin: 0 0 18px; color: var(--muted); font-size: 0.95rem; }
+    h2 {
+      margin: 20px 0 10px;
+      font-size: 1.05rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th { background: #fafafb; font-weight: 600; }
+    code.path {
+      font-size: 0.82rem;
+      background: #f0f2f7;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .muted { color: var(--muted); font-size: 0.85rem; }
+    @media print {
+      .toolbar { display: none; }
+      body { background: #fff; }
+      .sheet { box-shadow: none; margin: 0; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <article class="sheet">
+    <div class="letterhead">
+      <strong>Merrakii</strong> · Academic marketplace web experience<br />
+      Reference paths mirror <code class="path">apps/web/src/app</code> routes · Canonical URLs via <code class="path">NEXT_PUBLIC_SITE_URL</code> (production: https://merrakii.co.in)
+    </div>
+
+    <h1>Website sitemap — information architecture</h1>
+    <p class="doc-sub">
+      Indexed destinations served by Next.js at <code class="path">/sitemap.xml</code>. Transactional pages under /apply and /payment are intentionally omitted from that crawl feed unless you extend <code class="path">sitemap.ts</code>.
+    </p>
+
+    <h2>1 — Entry &amp; journeys</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Page</th>
+          <th style="width:26%">Route</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Home</strong></td>
+          <td><code class="path">/</code></td>
+          <td>Merrakii landing · primary study-abroad / study-in-India messaging.</td>
+        </tr>
+        <tr>
+          <td><strong>Study abroad hub</strong></td>
+          <td><code class="path">/abroad</code></td>
+          <td>International pathways narrative &amp; entry into catalogue flows.</td>
+        </tr>
+        <tr>
+          <td><strong>Study in India hub</strong></td>
+          <td><code class="path">/india</code></td>
+          <td>Domestic pathways; sign-in affordances anchored here.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>2 — Discovery &amp; catalogue</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Page</th>
+          <th style="width:26%">Route</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Exam search</strong></td>
+          <td><code class="path">/search</code></td>
+          <td>Search exams surface linked from shell navigation.</td>
+        </tr>
+        <tr>
+          <td><strong>Browse catalogue</strong></td>
+          <td><code class="path">/catalog</code></td>
+          <td>Programmatic catalogue exploration UI.</td>
+        </tr>
+        <tr>
+          <td><strong>All exams</strong></td>
+          <td><code class="path">/exams</code></td>
+          <td>Field-grouped exam listing.</td>
+        </tr>
+        <tr>
+          <td><strong>Fields index</strong></td>
+          <td><code class="path">/fields</code></td>
+          <td>Academic fields landing.</td>
+        </tr>
+        <tr>
+          <td><strong>Field detail</strong></td>
+          <td><code class="path">/fields/[slug]</code></td>
+          <td>Dynamic · one URL per field slug from catalog data.</td>
+        </tr>
+        <tr>
+          <td><strong>Exam → institutes</strong></td>
+          <td><code class="path">/exams/[id]/institutes</code></td>
+          <td>Dynamic · institutes offering programs tied to an exam.</td>
+        </tr>
+        <tr>
+          <td><strong>Institute detail</strong></td>
+          <td><code class="path">/institutes/[id]</code></td>
+          <td>Dynamic · institute profile &amp; programs.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3 — Conversion funnel (authenticated)</h2>
+    <p class="muted">Typically <strong>noindex</strong> for SEO; listed here for completeness &amp; QA.</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Page</th>
+          <th style="width:26%">Route</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Program application</strong></td>
+          <td><code class="path">/apply/[programId]</code></td>
+          <td>Structured apply form → payment.</td>
+        </tr>
+        <tr>
+          <td><strong>Payment checkout</strong></td>
+          <td><code class="path">/payment/[applicationId]</code></td>
+          <td>Razorpay or demo checkout.</td>
+        </tr>
+        <tr>
+          <td><strong>Payment success</strong></td>
+          <td><code class="path">/payment/success</code></td>
+          <td>Confirmation · query <code class="path">applicationId</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Account · my applications</strong></td>
+          <td><code class="path">/account</code></td>
+          <td>Authenticated dashboard.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4 — Recommended marketing / legal (not yet in repo)</h2>
+    <p class="muted">Add when you ship the marketing shell: About, Services, Contact, Privacy Policy, Terms.</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Page</th>
+          <th style="width:26%">Route (proposed)</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>About Merrakii</td>
+          <td><code class="path">/about</code></td>
+          <td>Trust &amp; consultancy positioning.</td>
+        </tr>
+        <tr>
+          <td>Contact / demo</td>
+          <td><code class="path">/contact</code></td>
+          <td>Lead capture &amp; office details.</td>
+        </tr>
+        <tr>
+          <td>Privacy policy</td>
+          <td><code class="path">/privacy</code></td>
+          <td>Compliance &amp; consent wording.</td>
+        </tr>
+        <tr>
+          <td>Terms of use</td>
+          <td><code class="path">/terms</code></td>
+          <td>Platform terms.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted" style="margin-top:20px;">
+      Machine-readable sitemap: deploy the web app and open <strong>/sitemap.xml</strong>. Extend <code class="path">apps/web/src/app/sitemap.ts</code> to emit institute/program URLs once you wire Prisma/API fetch at build time.
+    </p>
+  </article>
+</body>
+</html>

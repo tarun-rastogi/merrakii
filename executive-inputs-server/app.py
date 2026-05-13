@@ -1,5 +1,6 @@
 """
-Serve docs/digi.html and POST /api/executive-inputs to upsert into the
+Serve deliverable/digi.html (and sibling static assets under deliverable/) plus files from docs/
+(e.g. executive-inputs-config.js, Excel), and POST /api/executive-inputs to upsert into the
 "Submission log" sheet in docs/Merrakii_Business_Capture.xlsx (one row per Section + Q#; resubmit updates).
 
 Storage modes
@@ -29,6 +30,7 @@ from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
+DELIVERABLE = ROOT / "deliverable"
 DEFAULT_XLSX = DOCS / "Merrakii_Business_Capture.xlsx"
 SUBMIT_TOKEN = os.environ.get("EXECUTIVE_INPUTS_SUBMIT_TOKEN", "").strip()
 
@@ -324,21 +326,37 @@ def _process_payload_with_meta(payload: dict) -> tuple[int, str | None]:
 
 @app.get("/")
 def index():
-    return send_from_directory(DOCS, "digi.html")
+    return send_from_directory(DELIVERABLE, "digi.html")
 
 
 @app.get("/<path:filename>")
 def static_docs(filename: str):
     if ".." in filename or filename.startswith("/"):
         return ("Not found", 404)
-    target = (DOCS / filename).resolve()
-    try:
-        target.relative_to(DOCS.resolve())
-    except ValueError:
+
+    # URL …/docs/<path> ↔ files under repository docs/ (Executive Inputs JS, etc.)
+    if filename.startswith("docs/"):
+        rel_within_docs = filename[5:]
+        if not rel_within_docs or ".." in rel_within_docs:
+            return ("Not found", 404)
+        doc_target = (DOCS / rel_within_docs).resolve()
+        try:
+            doc_target.relative_to(DOCS.resolve())
+        except ValueError:
+            return ("Not found", 404)
+        if doc_target.is_file():
+            return send_from_directory(DOCS, rel_within_docs)
         return ("Not found", 404)
-    if not target.is_file():
-        return ("Not found", 404)
-    return send_from_directory(DOCS, filename)
+
+    for base in (DELIVERABLE, DOCS):
+        target = (base / filename).resolve()
+        try:
+            target.relative_to(base.resolve())
+        except ValueError:
+            continue
+        if target.is_file():
+            return send_from_directory(base, filename)
+    return ("Not found", 404)
 
 
 def main():

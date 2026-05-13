@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { phoneSchema } from "@dam/shared";
+import { phoneSchema } from "@merrakii/shared";
 import { api } from "@/lib/api";
 
 type Props = {

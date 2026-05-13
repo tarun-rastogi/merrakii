@@ -50,7 +50,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <LogoMark />
             <div className="min-w-0 leading-tight">
               <span className="block truncate text-xs font-bold tracking-tight text-[var(--m-navy)] transition group-hover:text-[var(--m-burgundy)] sm:text-sm">
-                Digital Academic Marketplace
+                Merrakii
               </span>
               <span className="hidden text-[11px] font-medium text-[var(--muted)] lg:block">
                 Exams · Institutes · Applications
@@ -145,7 +145,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-[#e39632]">Marketplace</p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/75">
-              © {new Date().getFullYear()} Digital Academic Marketplace. Guidance for India&apos;s competitive exam and
+              © {new Date().getFullYear()} Merrakii. Guidance for India&apos;s competitive exam and
               institute journey.
             </p>
           </div>

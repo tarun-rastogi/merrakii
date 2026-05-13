@@ -1,6 +1,6 @@
 import type { FastifyPluginAsync } from "fastify";
 import { Prisma } from "@prisma/client";
-import { otpRequestSchema, otpVerifySchema } from "@dam/shared";
+import { otpRequestSchema, otpVerifySchema } from "@merrakii/shared";
 import type { Env } from "../config.js";
 import { normalizePhone } from "../lib/phone.js";
 import { setOtp, consumeOtp } from "../lib/otp-store.js";

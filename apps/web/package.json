@@ -1,5 +1,5 @@
 {
-  "name": "@dam/web",
+  "name": "@merrakii/web",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "next start -p ${PORT:-3002}"
   },
   "dependencies": {
-    "@dam/shared": "file:../../packages/shared",
+    "@merrakii/shared": "file:../../packages/shared",
     "next": "^15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

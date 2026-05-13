@@ -12,7 +12,7 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: EXECUTIVE_INPUTS_GITHUB_REPO
-        value: tarun-rastogi/academic-intelligent-marketplace
+        value: tarun-rastogi/merrakii
       - key: EXECUTIVE_INPUTS_GITHUB_FILE
         value: docs/Merrakii_Business_Capture.xlsx
       - key: CORS_ALLOW_ORIGIN

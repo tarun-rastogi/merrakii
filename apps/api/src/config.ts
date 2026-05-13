@@ -4,7 +4,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   PORT: z.coerce.number().default(4000),
   DATABASE_URL: z.string(),
-  WEB_ORIGIN: z.string().default("http://localhost:3001"),
+  WEB_ORIGIN: z.string().default("http://localhost:3002"),
   SESSION_DAYS: z.coerce.number().default(14),
   DEV_OTP: z.string().default("123456"),
   RAZORPAY_KEY_ID: z.string().optional(),

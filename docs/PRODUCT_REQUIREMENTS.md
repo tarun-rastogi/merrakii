@@ -1,7 +1,7 @@
-# Product Requirements Document — Digital Academic Marketplace (Merrakii)
+# Product Requirements Document — Merrakii
 
 **Product:** Intelligent digital channel for guided academic discovery, application, and enrollment  
-**Primary artifact sources:** Executive narrative (`docs/digi.html`), engineering implementation summary (`docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md`), and product discussion threads in Cursor.  
+**Primary artifact sources:** Executive narrative (`deliverable/digi.html`), engineering implementation summary (`docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md`), and product discussion threads in Cursor.  
 **Status:** Living document — MVP behavior is **partially implemented** in-repo; several deck items describe **target** capabilities.  
 **Last updated:** April 2026  
 
@@ -14,13 +14,13 @@ This PRD aligns **what we are building** (and why) with **what already exists** 
 **Companion references**
 
 - `docs/CHAT_HANDOFF_PRODUCT_AND_ENGINEERING.md` — authoritative for **current** routes, env vars, payment modes, and domain enums.  
-- `docs/digi.html` — executive story arc (vision, market reality, product promise, AI story, roadmap framing).
+- `deliverable/digi.html` — executive story arc (vision, market reality, product promise, AI story, roadmap framing).
 
 ---
 
 ## 2. Executive summary
 
-Merrakii’s Digital Academic Marketplace is a **student-centered** surface to move from **interest in a field or exam** through **program discovery**, **structured application**, **payment**, and **post-payment confirmation**, with fulfillment semantics that depend on **institute partnership** (enrollment-oriented path vs qualified lead path).
+Merrakii is a **student-centered** surface to move from **interest in a field or exam** through **program discovery**, **structured application**, **payment**, and **post-payment confirmation**, with fulfillment semantics that depend on **institute partnership** (enrollment-oriented path vs qualified lead path).
 
 The **north-star outcome** is to **empower confident academic decisions through intelligent guidance** and to reduce friction where students today face **choice overload**, **opaque institute discovery**, **fragmented research**, and **enrollment friction**.
 

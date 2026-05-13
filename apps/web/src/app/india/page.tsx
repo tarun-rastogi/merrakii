@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { phoneSchema } from "@dam/shared";
+import { phoneSchema } from "@merrakii/shared";
 import { Shell } from "@/components/Shell";
 import { OtpModal } from "@/components/OtpModal";
 import { api } from "@/lib/api";
@@ -73,7 +73,7 @@ export default function IndiaHomePage() {
           <p className="dam-eyebrow">Students · India</p>
           <h1 className="dam-hero-title mt-4">
             Welcome to the{" "}
-            <span className="dam-hero-highlight">Digital Academic Marketplace</span>
+            <span className="dam-hero-highlight">Merrakii</span>
           </h1>
           <p className="dam-lead mt-5 max-w-xl">
             Explore academic fields and competitive exams, compare institutes and programs, then apply and pay

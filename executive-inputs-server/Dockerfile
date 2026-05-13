@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY executive-inputs-server/ /app/executive-inputs-server/
 COPY docs/ /app/docs/
+COPY deliverable/ /app/deliverable/
 
 EXPOSE 10000
 ENV PORT=10000

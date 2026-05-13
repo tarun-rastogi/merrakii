@@ -9,9 +9,9 @@ alwaysApply: true
 
 When you modify anything under `apps/web`, `apps/api`, `packages/`, root `package.json`, or shared config that could affect the running app, **restart the local stack** before ending the turn or telling the user to verify.
 
-1. From the repo root `academic-intelligent-marketplace`, prefer **`npm run dev:restart`** (cleans stuck `tsx watch` / `concurrently` + rebuilds `@dam/shared` + starts API **4000** + Next **3001**). If that fails, run `npm run ports:free` then **`npm run dev`** in the background.
+1. From the repo root `merrakii`, prefer **`npm run dev:restart`** (cleans stuck `tsx watch` / `concurrently` + rebuilds `@merrakii/shared` + starts API **4000** + Next **3002**). If that fails, run `npm run ports:free` then **`npm run dev`** in the background.
 2. Run dev in the **background** when using automation.
 
 Skip restart only for edits limited to `docs/`, README-only, or **pure** `.mdc` / documentation that does not require manual verification of the app.
 
-If the user reports stale UI or HTTP 500 on **3001**, prefer **`npm run fix:web`** then **`npm run dev`**.
+If the user reports stale UI or HTTP 500 on **3002**, prefer **`npm run fix:web`** then **`npm run dev`**.

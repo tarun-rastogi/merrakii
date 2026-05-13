@@ -20,7 +20,7 @@ export async function api<T>(
     const hint =
       typeof window !== "undefined" &&
       (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
-        ? ` Cannot reach ${base}. From the project root run "npm run dev" (API on port 4000). If you use http://127.0.0.1:3001, the API must be running with dev CORS (default).`
+        ? ` Cannot reach ${base}. From the project root run "npm run dev" (API on port 4000). If you use http://127.0.0.1:3002, the API must be running with dev CORS (default).`
         : "";
     const msg = e instanceof Error ? e.message : "Network error";
     throw new Error(`${msg}.${hint}`);

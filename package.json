@@ -1,26 +1,26 @@
 {
-  "name": "digital-academic-marketplace",
+  "name": "merrakii",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "predev": "npm run build -w @dam/shared",
-    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w @dam/api\" \"npm run dev -w @dam/web\"",
+    "predev": "npm run build -w @merrakii/shared",
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w @merrakii/api\" \"npm run dev -w @merrakii/web\"",
     "dev:restart": "bash scripts/restart-dev.sh && npm run dev",
     "ports:free": "bash scripts/restart-dev.sh",
     "fix:web": "bash scripts/repair-web.sh",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
-    "db:migrate": "npm run db:migrate -w @dam/api",
-    "db:push": "npm run db:push -w @dam/api",
-    "db:seed": "npm run db:seed -w @dam/api",
-    "db:studio": "npm run db:studio -w @dam/api",
-    "build": "npm run build -w @dam/shared && npm run build -w @dam/api && npm run build -w @dam/web",
-    "build:vercel": "npm run build -w @dam/shared && npm run build -w @dam/web",
+    "db:migrate": "npm run db:migrate -w @merrakii/api",
+    "db:push": "npm run db:push -w @merrakii/api",
+    "db:seed": "npm run db:seed -w @merrakii/api",
+    "db:studio": "npm run db:studio -w @merrakii/api",
+    "build": "npm run build -w @merrakii/shared && npm run build -w @merrakii/api && npm run build -w @merrakii/web",
+    "build:vercel": "npm run build -w @merrakii/shared && npm run build -w @merrakii/web",
     "vercel:disable-deployment-protection": "node scripts/disable-vercel-deployment-protection.mjs",
-    "docs:live": "live-server docs --port=5500 --open=digi.html --watch=docs"
+    "docs:live": "live-server . --port=5500 --open=deliverable/digi.html"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

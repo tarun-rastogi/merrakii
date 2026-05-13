@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposal — Cosmetic Brand Website | Maple AI Technologies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Maple AI Technologies — matches digital card theme */
+      --cyan: #00b4d8;
+      --blue: #4361ee;
+      --purple: #7c3aed;
+      --bg-dark: #07080f;
+      --ink: #1a1d24;
+      --muted: #4a505c;
+      --line: #d8dce4;
+      --accent: var(--cyan);
+      --accent-mid: var(--blue);
+      --accent-soft: rgba(0, 180, 216, 0.1);
+      --accent-soft-2: rgba(67, 97, 238, 0.08);
+      --paper: #ffffff;
+      --wash: #f4f6fb;
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 15px; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background-color: var(--wash);
+      background-image: radial-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      line-height: 1.5;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 12px;
+      padding: 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-print {
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 55%, var(--purple) 100%);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(67, 97, 238, 0.35);
+    }
+    .btn-print:hover { opacity: 0.94; }
+    .sheet {
+      position: relative;
+      max-width: 210mm;
+      margin: 20px auto 48px;
+      padding: calc(18mm + 4px) 16mm 20mm;
+      background: var(--paper);
+      box-shadow: 0 4px 32px rgba(7, 8, 15, 0.1);
+      border-radius: 4px;
+    }
+    .sheet::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--blue) 45%, var(--purple) 100%);
+    }
+    .letterhead {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .letterhead-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px 24px;
+      margin-bottom: 14px;
+    }
+    .letterhead-left {
+      display: flex;
+      align-items: flex-start;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+    .brand-logo {
+      height: 104px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      object-position: top left;
+      margin: 0;
+      padding: 0;
+      margin-top: -27px;
+    }
+    .letterhead-contact {
+      text-align: right;
+      flex: 1 1 220px;
+      min-width: 200px;
+      line-height: 1.45;
+      padding-top: 0;
+      margin-top: 0;
+      align-self: flex-start;
+    }
+    .letterhead-meta { margin-top: 10px; text-align: left; }
+    @media (max-width: 600px) {
+      .letterhead-contact { text-align: left; }
+    }
+    .letterhead strong { color: var(--ink); }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .doc-sub {
+      margin: 0 0 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    h2 {
+      margin: 22px 0 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      position: relative;
+      padding-left: 14px;
+    }
+    h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.12em;
+      bottom: 0.12em;
+      width: 4px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--cyan) 0%, var(--blue) 50%, var(--purple) 100%);
+    }
+    h3 {
+      margin: 14px 0 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    p {
+      margin: 0 0 10px;
+      text-align: justify;
+      text-wrap: pretty;
+      hyphens: auto;
+    }
+    ul {
+      margin: 6px 0 12px;
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 6px;
+      text-align: justify;
+      text-wrap: pretty;
+      hyphens: auto;
+    }
+    li::marker { color: var(--cyan); }
+    .sheet a {
+      color: var(--cyan);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .sheet a:hover {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+    .callout {
+      margin: 16px 0;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-soft-2) 100%);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 180, 216, 0.22);
+      font-size: 0.92rem;
+    }
+    .callout strong { color: var(--blue); }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.9rem;
+    }
+    .pricing-table th {
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+    }
+    .pricing-table td {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .pricing-table tr:nth-child(even) td {
+      background: #fafafa;
+    }
+    .pricing-table td.amount {
+      text-align: right;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .total-row td {
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-soft), var(--accent-soft-2)) !important;
+      border-top: 2px solid var(--cyan);
+    }
+    .slab-formula {
+      margin: 14px 0;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-soft-2) 100%);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 180, 216, 0.22);
+      font-size: 0.92rem;
+    }
+    .slab-formula strong { color: var(--blue); }
+    .slab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.82rem;
+    }
+    .slab-table th {
+      text-align: left;
+      padding: 8px 6px;
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-weight: 700;
+      border: 1px solid var(--line);
+      vertical-align: bottom;
+    }
+    .slab-table td {
+      padding: 8px 6px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .slab-table tr:nth-child(even) td { background: #fafafa; }
+    .slab-name { font-weight: 700; color: var(--blue); white-space: nowrap; }
+    .slab-table .num { font-variant-numeric: tabular-nums; }
+    .operating-footnotes {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .operating-footnotes ol { margin: 8px 0 0; padding-left: 1.2rem; }
+    .operating-footnotes li { margin-bottom: 6px; text-align: left; }
+    footer.doc-foot {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    h3.payment-milestones {
+      margin-top: 3.8rem;
+      break-before: page;
+      page-break-before: always;
+    }
+    @media print {
+      .toolbar { display: none; }
+      body { background: #fff; background-image: none; }
+      .sheet { box-shadow: none; margin: 0; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <article class="sheet">
+
+    <!-- Letterhead -->
+    <div class="letterhead">
+      <div class="letterhead-top">
+        <div class="letterhead-left">
+          <img src="../../maple-ai-technologies/assets/maple-ai-logo-from-digital-card.jpg" alt="Maple AI Technologies" class="brand-logo" />
+        </div>
+        <div class="letterhead-contact">
+          Website: <a href="https://mapleaitechnologies.com">mapleaitechnologies.com</a><br />
+          Email: <a href="mailto:tarun.rastogi@mapleaitechnologies.com">tarun.rastogi@mapleaitechnologies.com</a><br />
+          Phone: +91 96190 60302
+        </div>
+      </div>
+      <div class="letterhead-meta">
+        <strong>Prepared for:</strong><br />
+        Mr. Jatinder Singh<br />
+        Founder, Upcoming Cosmetic Brand<br /><br />
+        <strong>Date:</strong> 12 May 2026 &nbsp;·&nbsp; <strong>Ref:</strong> MAP-2026-CBW-001
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1>Proposal for Cosmetic Brand Website</h1>
+    <p class="doc-sub">End-to-end website design and development — brand presence, six-product showcase, and e-commerce capability — delivered by Maple AI Technologies.</p>
+
+    <!-- 1. Project Overview -->
+    <h2>1. Project overview</h2>
+    <p>
+      Mr. Jatinder Singh is launching a new cosmetic business with an initial catalogue of <strong>six products</strong>. The objective of this engagement is to deliver a <strong>professional, conversion-focused website</strong> that establishes the brand's digital presence, showcases all six products with compelling detail, and enables direct sales through a seamless checkout experience.
+    </p>
+    <p>
+      The site will be <strong>mobile-first and fully responsive</strong>, reflecting the reality that the majority of cosmetic buyers discover and purchase via smartphones. The design language will align with the brand's identity — clean, modern, and trustworthy — communicating quality and authenticity from the first visit.
+    </p>
+    <p>
+      Maple AI Technologies will own the full delivery lifecycle: <strong>UI/UX design, development, content integration, payment setup, and a go-live hand-off</strong> with a structured support window. Post-launch, an optional annual maintenance contract keeps the site secure, fast, and up to date.
+    </p>
+
+    <!-- 2. Platforms covered -->
+    <h2>2. Platforms covered</h2>
+    <p>
+      <strong>Customers</strong> will interact through a <strong>fully responsive website</strong> optimised for mobile, tablet, and desktop browsers. <strong>The brand team</strong> will manage products, orders, and content through a <strong>browser-based admin dashboard</strong> — no technical knowledge required.
+    </p>
+
+    <!-- 3. Website scope -->
+    <h2>3. Website scope — Phase 1</h2>
+    <p>
+      Each page has a clear role from discovery to purchase or enquiry.
+    </p>
+
+    <h3>Home page</h3>
+    <p>Hero, primary CTA, product grid for all six items, short brand story, and trust signals.</p>
+
+    <h3>Product pages — six products</h3>
+    <p>Dedicated detail per product: imagery, copy, ingredients, usage, variants, add to cart, related items — editable from admin.</p>
+
+    <h3>Shop / product listing page</h3>
+    <p>Grid or list of all six products with filter/sort and fast mobile performance.</p>
+
+    <h3>About / brand story page</h3>
+    <p>Founders, values, sourcing, and differentiation for first-time buyers.</p>
+
+    <h3>Cart and checkout</h3>
+    <p>Cart, address, payment (UPI / card / COD via agreed gateway), confirmation, and order email.</p>
+
+    <h3>Contact page</h3>
+    <p>Contact form, social links, optional WhatsApp; wholesale tagged via subject if needed.</p>
+
+    <h3>Legal and policy pages</h3>
+    <p>Privacy, shipping, returns, and terms — template draft from Maple AI; client signs off before go-live.</p>
+
+    <!-- 4. Admin panel -->
+    <h2>4. Admin panel — scope</h2>
+    <p>
+      Browser-based console for operations without ongoing developer dependency.
+    </p>
+
+    <h3>Product management</h3>
+    <p>Add, edit, publish/unpublish — images, copy, prices, stock, and variants.</p>
+
+    <h3>Order management</h3>
+    <p>Status queue, internal notes, and customer notifications at agreed milestones.</p>
+
+    <h3>Customer and enquiry records</h3>
+    <p>Customers and form submissions; CSV export for fulfilment or finance.</p>
+
+    <h3>Basic discount and coupon management</h3>
+    <p>Percentage or fixed codes with optional expiry and usage caps.</p>
+
+    <!-- 5. Tech stack -->
+    <h2>5. Technology stack (indicative)</h2>
+
+    <h3>Frontend</h3>
+    <p>React / Next.js for performance, SEO-oriented rendering, and modern UI.</p>
+
+    <h3>E-commerce layer</h3>
+    <p>Custom cart/orders or lightweight headless commerce — confirmed at kick-off.</p>
+
+    <h3>Admin console</h3>
+    <p>Browser SPA with role-based access for non-technical users.</p>
+
+    <h3>Database</h3>
+    <p>PostgreSQL with ORM (e.g. Prisma) for catalogue, orders, and customers.</p>
+
+    <h3>Payment</h3>
+    <p>Razorpay or equivalent — UPI, cards, net banking, plus COD flag.</p>
+
+    <h3>Email</h3>
+    <p>Transactional email (e.g. Resend or SendGrid) for orders and status updates.</p>
+
+    <h3>Hosting</h3>
+    <p>Cloud deployment with separate staging and production.</p>
+
+    <h3>Media</h3>
+    <p>Image optimisation and CDN for fast mobile product loads.</p>
+
+    <!-- 6. Delivery plan -->
+    <h2>6. Delivery plan</h2>
+    <ul>
+      <li><strong>Week 1 — Discovery &amp; Design:</strong> brand onboarding, wireframes, UI mockups for key pages (Home, Product, Checkout), client review and sign-off.</li>
+      <li><strong>Week 2–3 — Development — Core:</strong> home page, shop, all six product pages, about, contact, legal pages; admin product and order management.</li>
+      <li><strong>Week 4 — Development — Checkout &amp; Payments:</strong> cart, checkout flow, payment gateway integration, order confirmation emails, discount codes.</li>
+      <li><strong>Week 5 — QA &amp; Content Integration:</strong> full QA across devices and browsers; content population (product copy, images, policies); performance and SEO checks.</li>
+      <li><strong>Week 6 — Go-Live &amp; Hand-Off:</strong> staging sign-off, DNS / domain setup, production deployment, admin training, and hand-off documentation.</li>
+    </ul>
+    <p>
+      Total duration: <strong>6 weeks</strong> from receipt of brand assets and signed statement of work. Timeline assumes timely client feedback (within 2 business days at each review stage).
+    </p>
+
+    <!-- 7. Key assumptions -->
+    <h2>7. Key assumptions</h2>
+    <ul>
+      <li>Client supplies photography and logo.</li>
+      <li>Product copy (written content for products — names, descriptions, ingredients, claims on the site) is client-provided and approved before product-page build.</li>
+      <li>Client owns the domain; Maple AI assists with DNS.</li>
+      <li>Client completes payment-gateway KYC/merchant setup; Maple AI assists in merchant setup; Maple AI handles technical integration.</li>
+      <li>Policy text is client- or counsel-approved before go-live.</li>
+      <li>Post–design-sign-off changes go through change control.</li>
+    </ul>
+
+    <!-- 8. Out of scope -->
+    <h2>8. Out of scope (unless added by change request)</h2>
+    <ul>
+      <li>Custom mobile application (iOS / Android) — can be scoped as Phase 2.</li>
+      <li>Subscription or membership models beyond standard one-time purchase.</li>
+      <li>Multi-vendor marketplace functionality.</li>
+      <li>Loyalty points or rewards programme.</li>
+      <li>Advanced analytics dashboards or BI reporting beyond basic order data export.</li>
+      <li>Social media content creation, ad campaigns, or SEO copywriting (brand content stays client-owned).</li>
+      <li>Third-party logistics (3PL) system integration — can be scoped as Phase 2.</li>
+    </ul>
+
+    <!-- 9. Commercial structure -->
+    <h2>9. Commercial structure</h2>
+    <p>
+      Professional fees are in INR and exclude GST (18%) unless stated otherwise. Payment is milestone-based as set out below.
+    </p>
+
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Phase / Item</th>
+          <th>Description</th>
+          <th>Duration</th>
+          <th class="amount">Fee (excl. GST)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Phase 1</strong><br/>Website Design &amp; Development</td>
+          <td>Full website — home, shop, 6 product pages, about, contact, legal pages, cart &amp; checkout, payment integration, admin panel, QA, and go-live.</td>
+          <td>6 weeks</td>
+          <td class="amount">₹ 3,00,000</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2</strong> <em>(optional)</em><br/>Mobile App — iOS &amp; Android</td>
+          <td>Native or cross-platform mobile application on the same backend APIs, once Phase 1 is stable.</td>
+          <td>6 weeks</td>
+          <td class="amount">To be quoted</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3</strong> <em>(optional)</em><br/>Annual Maintenance Contract (AMC)</td>
+          <td>Security updates, hosting support, minor content changes (up to 4 hours/month), and priority bug fixes for 12 months. Commences after 3 months of complimentary post-launch support.</td>
+          <td>12 months</td>
+          <td class="amount">To be quoted</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3"><strong>Phase 1 total (excl. GST)</strong></td>
+          <td class="amount">₹ 3,00,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="payment-milestones">Payment milestones — Phase 1</h3>
+    <ul>
+      <li><strong>Milestone 1 — 25% (₹ 75,000) on signing</strong> — project kick-off and resource allocation.</li>
+      <li><strong>Milestone 2 — 25% (₹ 75,000) on design sign-off</strong> — approved UI mockups for all key pages delivered and signed off by client.</li>
+      <li><strong>Milestone 3 — 25% (₹ 75,000) on development completion</strong> — full staging site ready, all six product pages live, checkout and admin panel functional, QA review underway.</li>
+      <li><strong>Milestone 4 — 25% (₹ 75,000) on go-live</strong> — production deployment, domain live, payment gateway active, admin hand-off and training session completed.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Post-launch support:</strong> Three months of complimentary maintenance on the delivered scope are included following go-live — covering bug fixes on delivered functionality and minor content updates. You may then opt into the Phase 3 AMC or commission scoped enhancements as needed.
+    </div>
+
+    <!-- 10. Why Maple AI Technologies -->
+    <h2>10. Why Maple AI Technologies</h2>
+    <ul>
+      <li><strong>Trusted by Brands like Hero Group.</strong></li>
+      <li><strong>Design-led thinking:</strong> we treat the brand's visual identity as seriously as the code — your site will look as good as the products it sells.</li>
+      <li><strong>End-to-end ownership:</strong> design, development, QA, deployment, and training in a single engagement — no coordination between multiple agencies.</li>
+      <li><strong>Built to grow:</strong> the technology choices made in Phase 1 are deliberately scalable — adding more products, a loyalty programme, or a mobile app in Phase 2 will not require a rebuild.</li>
+      <li><strong>Transparent process:</strong> milestone-based payments, clear scope, and change control from day one so there are no billing surprises.</li>
+    </ul>
+
+    <!-- Engagement lead callout -->
+    <div class="callout">
+      <strong>Engagement lead:</strong> Tarun Rastogi leads this engagement for the client. He brings strong delivery ownership, strategic and leadership judgement, project management discipline, and hands-on development experience, with 15 years in industry across multinational companies, building high-quality applications deployed for demanding, global-class clients.<br />
+      <strong>Email:</strong> <a href="mailto:tarun.rastogi@mapleaitechnologies.com">tarun.rastogi@mapleaitechnologies.com</a> &nbsp;·&nbsp; <strong>Phone:</strong> +91 96190 60302
+    </div>
+
+    <!-- 11. Next steps -->
+    <h2>11. Next steps</h2>
+    <ul>
+      <li>Review this proposal and share any questions or clarifications with the Maple AI Technologies team.</li>
+      <li>Schedule a <strong>30-minute discovery call</strong> to walk through the scope, discuss design preferences, and confirm the timeline.</li>
+      <li>On agreement, a <strong>Statement of Work (SoW)</strong> and invoice for the first milestone will be issued within 2 business days.</li>
+    </ul>
+
+    <!-- 12. Indicative operating costs — PG & AWS -->
+    <h2>12. Indicative operating costs — payment gateway &amp; AWS</h2>
+    <p>
+      Beyond Phase 1 professional fees, you should plan for <strong>ongoing variable costs</strong>: payment-gateway charges on successful online payments and cloud hosting. The table below is an <strong>illustrative three-level slab</strong> for budgeting; it is not a quote from any payment provider or from AWS.
+    </p>
+    <div class="slab-formula">
+      <strong>Payment gateway (planning assumption):</strong> <strong>2%</strong> of successful card / UPI / netbanking transaction value processed in the month (your monthly GMV through the gateway).<br />
+      <span style="color: var(--muted)">Monthly PG fee (₹) ≈ 0.02 × monthly GMV (₹). Example: GMV ₹10,00,000 → ₹20,000 at 2%.</span>
+    </div>
+    <p>
+      <strong>Peak concurrent shoppers</strong> is how many customers are actively browsing or checking out at the same busy moment (not total customers per day). <strong>Peak API requests</strong> is a rough order-of-magnitude for website and checkout APIs at that peak (static assets excluded).
+    </p>
+    <table class="slab-table">
+      <thead>
+        <tr>
+          <th>Slab</th>
+          <th>Orders / month <br /><span style="font-weight:400;color:var(--muted)">(paid orders)</span></th>
+          <th>Peak concurrent shoppers <br /><span style="font-weight:400;color:var(--muted)">(at one time)</span></th>
+          <th>Peak API req. <br /><span style="font-weight:400;color:var(--muted)">(~req/s)</span></th>
+          <th>Illustrative monthly GMV <br /><span style="font-weight:400;color:var(--muted)">(example @ ₹450 AOV)</span></th>
+          <th>PG @ <strong>2%</strong> of GMV <br /><span style="font-weight:400;color:var(--muted)">(₹ / month)</span></th>
+          <th>AWS hosting <br /><span style="font-weight:400;color:var(--muted)">(₹ / month, indicative band)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="slab-name">Starter</td>
+          <td class="num">up to 1,000</td>
+          <td class="num">~30–50</td>
+          <td class="num">~8–15</td>
+          <td class="num">₹ 4,50,000</td>
+          <td class="num"><strong>₹ 9,000</strong></td>
+          <td class="num">₹ 5,000 – ₹ 9,000</td>
+        </tr>
+        <tr>
+          <td class="slab-name">Growth</td>
+          <td class="num">1,001 – 5,000</td>
+          <td class="num">~80–150</td>
+          <td class="num">~25–45</td>
+          <td class="num">₹ 18,00,000</td>
+          <td class="num"><strong>₹ 36,000</strong></td>
+          <td class="num">₹ 14,000 – ₹ 24,000</td>
+        </tr>
+        <tr>
+          <td class="slab-name">Scale</td>
+          <td class="num">5,001 – 15,000</td>
+          <td class="num">~200–400</td>
+          <td class="num">~60–100</td>
+          <td class="num">₹ 54,00,000</td>
+          <td class="num"><strong>₹ 1,08,000</strong></td>
+          <td class="num">₹ 30,000 – ₹ 52,000</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.88rem;color:var(--muted)">
+      Illustrative GMV uses <strong>average order value (AOV) of ₹450</strong>; replace with your forecast: <em>GMV ≈ orders × your AOV</em>, then PG @ 2% = 0.02 × GMV.
+    </p>
+    <div class="operating-footnotes">
+      <strong>Notes</strong>
+      <ol>
+        <li><strong>Payment gateway:</strong> Actual fees depend on the provider (e.g. Razorpay), <strong>payment method</strong> (UPI vs card vs international), and <strong>GST on the gateway fee</strong>. The <strong>2%</strong> figure is a <strong>planning slab</strong> — not a provider rate card.</li>
+        <li><strong>AWS:</strong> Bands assume a typical stack (app + API + managed database + object storage + CDN in <strong>ap-south-1</strong>), modest backups, and no heavy ML or media pipelines. Spikes, extra environments, or third-party SaaS are additional.</li>
+        <li><strong>Cash on delivery (COD):</strong> Usually no PG MDR on COD; operational cost is fulfilment and returns.</li>
+        <li>Validate both lines with your <strong>actual</strong> gateway agreement and an AWS cost estimate before finalising budgets.</li>
+      </ol>
+    </div>
+
+    <footer class="doc-foot">
+      This proposal is indicative until superseded by a signed Statement of Work and confirmed fee schedule. All fees exclude GST at the prevailing rate. Scope, timeline, and pricing are valid for <strong>30 days</strong> from the date of issue. Maple AI Technologies reserves the right to re-quote if engagement commences after this period.
+    </footer>
+
+  </article>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "name": "@dam/api",
+  "name": "@merrakii/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@dam/shared": "*",
+    "@merrakii/shared": "*",
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.0.2",
     "@prisma/client": "^6.4.1",

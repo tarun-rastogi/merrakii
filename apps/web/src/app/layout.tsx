@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Digital Academic Marketplace",
+  title: "Merrakii",
   description: "Discover exams, institutes, and programs — apply and pay online.",
 };
 

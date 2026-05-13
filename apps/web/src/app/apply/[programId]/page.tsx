@@ -9,7 +9,7 @@ import {
   applicationCreateSchema,
   applicationDobMaxIso,
   applicationDobMinIso,
-} from "@dam/shared";
+} from "@merrakii/shared";
 import { Shell } from "@/components/Shell";
 import { api } from "@/lib/api";
 

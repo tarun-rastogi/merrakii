@@ -159,7 +159,7 @@ export default function PaymentPage({ params }: { params: Promise<{ applicationI
         key: order.keyId,
         amount: order.amount,
         currency: order.currency,
-        name: "Digital Academic Marketplace",
+        name: "Merrakii",
         description: summary?.program.name ?? "Program fee",
         order_id: order.orderId,
         handler: async (response) => {
@@ -424,7 +424,7 @@ export default function PaymentPage({ params }: { params: Promise<{ applicationI
                       {selectedMethod === "PAYTM" ? "Paytm checkout" : "UPI payment"}
                     </p>
                     <p className="mt-1 text-lg font-bold">Pay ₹{amountRupee?.toLocaleString("en-IN") ?? "—"}</p>
-                    <p className="mt-1 text-xs opacity-90">{currency} · Digital Academic Marketplace</p>
+                    <p className="mt-1 text-xs opacity-90">{currency} · Merrakii</p>
                   </div>
                   <div className="space-y-4 p-5 sm:p-6">
                     {upiPhase === "idle" ? (
